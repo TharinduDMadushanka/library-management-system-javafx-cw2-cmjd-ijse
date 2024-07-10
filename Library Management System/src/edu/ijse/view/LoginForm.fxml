@@ -49,7 +49,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Hyperlink layoutX="168.0" layoutY="394.0" onAction="#signupOnAction" text="Signup">
+            <Hyperlink fx:id="signupLink" layoutX="168.0" layoutY="394.0" onAction="#signupOnAction" text="Signup">
                <font>
                   <Font size="13.0" />
                </font>

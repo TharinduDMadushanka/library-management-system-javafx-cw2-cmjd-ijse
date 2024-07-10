@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="signupContext" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.UIController.SignupFormController">
+    <children>
+        <AnchorPane prefHeight="440.0" prefWidth="371.0" styleClass="left-form" stylesheets="@style/login.css">
+            <children>
+                <FontAwesomeIcon fill="WHITE" glyphName="BOOK" layoutX="130.0" layoutY="191.0" size="10em" />
+                <Label layoutX="74.0" layoutY="241.0" text="Library Management System " textFill="#fafafa">
+                    <font>
+                        <Font name="Arial Bold" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="371.0" prefHeight="440.0" prefWidth="302.0">
+            <children>
+                <Label layoutX="83.0" layoutY="29.0" text="Register Form">
+                    <font>
+                        <Font name="Arial Bold" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtName" layoutX="46.0" layoutY="100.0" prefHeight="30.0" prefWidth="220.0" styleClass="textfield" stylesheets="@style/login.css">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </TextField>
+                <PasswordField fx:id="txtPassword" layoutX="46.0" layoutY="272.0" prefHeight="30.0" prefWidth="220.0" styleClass="textfield" stylesheets="@style/login.css">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </PasswordField>
+                <Button fx:id="btnSignup" layoutX="46.0" layoutY="325.0" mnemonicParsing="false" onAction="#signupOnAction" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@style/login.css" text="Signup">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Label layoutX="14.0" layoutY="397.0" text="Already have an account?">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Hyperlink fx:id="loginLink" layoutX="179.0" layoutY="394.0" onAction="#LoginOnAction" text="Login">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Hyperlink>
+            <Label layoutX="46.0" layoutY="82.0" opacity="0.32" text="Full Name" />
+            <TextField fx:id="txtEmail" layoutX="46.0" layoutY="159.0" prefHeight="30.0" prefWidth="220.0" styleClass="textfield" stylesheets="@style/login.css">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="46.0" layoutY="141.0" opacity="0.32" text="Email" />
+            <TextField fx:id="txtUsername" layoutX="46.0" layoutY="217.0" prefHeight="30.0" prefWidth="220.0" styleClass="textfield" stylesheets="@style/login.css">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="46.0" layoutY="199.0" opacity="0.32" text="Username" />
+            <Label layoutX="46.0" layoutY="254.0" opacity="0.32" text="Password" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
