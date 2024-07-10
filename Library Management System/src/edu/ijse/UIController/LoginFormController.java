@@ -38,11 +38,12 @@ public class LoginFormController {
 
     }
 
-    public void signupOnAction(ActionEvent actionEvent) {
+    public void signupOnAction(ActionEvent actionEvent) throws IOException {
+        setUI("SignupForm");
     }
 
     private void setUI(String location) throws IOException {
-        Stage stage = (Stage) btnLogin.getScene().getWindow();
+        Stage stage = (Stage) loginContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/edu/ijse/view/" + location + ".fxml"))));
         stage.show();
         stage.centerOnScreen();
