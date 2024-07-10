@@ -13,7 +13,7 @@
     <children>
         <AnchorPane prefHeight="440.0" prefWidth="371.0" styleClass="left-form" stylesheets="@style/login.css">
             <children>
-                <FontAwesomeIcon fill="WHITE" glyphName="BOOK" layoutX="130.0" layoutY="191.0" size="10em" />
+                <FontAwesomeIcon fill="WHITE" glyphName="BOOK" layoutX="108.0" layoutY="193.0" size="10em" />
                 <Label layoutX="74.0" layoutY="241.0" text="Library Management System " textFill="#fafafa">
                     <font>
                         <Font name="Arial Bold" size="16.0" />
