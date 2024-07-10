@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class LoginFormController {
     public PasswordField txtPassword;
     public Button btnLogin;
     public Hyperlink signupLink;
+    public AnchorPane loginContext;
 
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
         String userName = txtUserName.getText();

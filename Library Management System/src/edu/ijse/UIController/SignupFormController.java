@@ -1,11 +1,15 @@
 package edu.ijse.UIController;
 
+import edu.ijse.db.DBConnection;
+import edu.ijse.dto.Admin;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class SignupFormController {
     public AnchorPane signupContext;
@@ -16,9 +20,28 @@ public class SignupFormController {
     public TextField txtEmail;
     public TextField txtUsername;
 
-    public void signupOnAction(ActionEvent actionEvent) {
+    public void signupOnAction(ActionEvent actionEvent) throws IOException {
+        String name = txtName.getText();
+        String password = txtPassword.getText();
+        String email = txtEmail.getText();
+        String username = txtUsername.getText();
+
+        DBConnection.userTable.add(
+                new Admin(name,password,email,username)
+        );
+        new Alert(Alert.AlertType.INFORMATION,"Your Account has been successfully registered!").show();
+        setUI("LoginForm");
+
     }
 
-    public void LoginOnAction(ActionEvent actionEvent) {
+    public void LoginOnAction(ActionEvent actionEvent) throws IOException {
+        setUI("LoginForm");
+    }
+
+    private void setUI(String location) throws IOException {
+        Stage stage = (Stage) signupContext.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/edu/ijse/view/" + location + ".fxml"))));
+        stage.show();
+        stage.centerOnScreen();
     }
 }
