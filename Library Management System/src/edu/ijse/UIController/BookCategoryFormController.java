@@ -14,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class BookCategoryFormController {
     public AnchorPane categoryContext;
@@ -66,6 +65,12 @@ public class BookCategoryFormController {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+
+        if (txtName.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.INFORMATION, "Please Enter Category name..!").show();
+            return;
+        }
+
         String newCategoryId = txtId.getText();
         CategoryDto category = new CategoryDto(
                 newCategoryId,
@@ -134,14 +139,7 @@ public class BookCategoryFormController {
     }
 
     private String generateCategoryId() {
-        int maxId = 0;
-        for (CategoryDto category : categoryList) {
-            String[] parts = category.getId().split("-");
-            int idNumber = Integer.parseInt(parts[1]);
-            if (idNumber > maxId) {
-                maxId = idNumber;
-            }
-        }
+
         return "BC-";
     }
 
