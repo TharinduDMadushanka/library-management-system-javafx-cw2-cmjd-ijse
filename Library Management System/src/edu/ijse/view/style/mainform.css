@@ -1,0 +1,42 @@
+.left-form{
+    -fx-background-color: #A6A6A6;
+    -fx-border-color: #000;
+    -fx-border-width: .4px 0px .4px .4px;
+}
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-size: 18px;
+    -fx-text-fill: #262626;
+    -fx-font-family: Arial;
+    -fx-alignment: CENTER-LEFT;
+    -fx-font-weight: bold;
+
+}
+
+.nav-btn:hover {
+    -fx-translate-y: -3px;
+    -fx-text-fill: #0D0D0D; /* Change text color on hover if needed */
+    -fx-effect: dropshadow( gaussian , rgba(0, 0, 0, 0.25) , 10, 0.5 , 0 , 2 );
+}
+
+.sign-out{
+    -fx-background-color: #222326;
+    -fx-cursor:hand;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #F2F2F2;
+}
+.sign-out:hover{
+    -fx-background-color: #d16060;
+    -fx-text-fill: white;
+}
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 8,0,0,0);
+}
+.white-bg{
+    -fx-background-color: #fff;
+    -fx-background-radius: 8px;
+}
+.context{
+    -fx-background-color: #D8D9D7;
+}
