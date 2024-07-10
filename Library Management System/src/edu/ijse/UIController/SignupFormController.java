@@ -29,7 +29,7 @@ public class SignupFormController {
         DBConnection.userTable.add(
                 new Admin(name,password,email,username)
         );
-        new Alert(Alert.AlertType.INFORMATION,"Your Account has been successfully registered!").show();
+        new Alert(Alert.AlertType.INFORMATION,"Your Account has been successfully registered!").showAndWait();
         setUI("LoginForm");
 
     }

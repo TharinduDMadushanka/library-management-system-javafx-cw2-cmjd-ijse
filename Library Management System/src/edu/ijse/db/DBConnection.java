@@ -9,9 +9,10 @@ public class DBConnection {
 
     static {
         userTable.add(new Admin(
-                1,
-                "a",
-                "1"
+                "Tharindu",
+                "1",
+                "tharindu@gmail.com",
+                "a"
         ));
     }
 
