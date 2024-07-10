@@ -14,7 +14,7 @@
    <children>
       <AnchorPane fx:id="categoryContext" layoutX="7.0" prefHeight="620.0" prefWidth="862.0" styleClass="context" stylesheets="@style/mainform.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane layoutX="49.0" layoutY="68.0" prefHeight="304.0" prefWidth="298.0" stylesheets="@style/mainform.css">
+            <AnchorPane layoutX="24.0" layoutY="68.0" prefHeight="315.0" prefWidth="323.0" stylesheets="@style/mainform.css">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />
@@ -25,13 +25,13 @@
                         <Font name="Arial Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtId" disable="true" layoutX="25.0" layoutY="80.0" prefHeight="26.0" prefWidth="197.0" />
+                  <TextField fx:id="txtId" disable="true" layoutX="25.0" layoutY="80.0" prefHeight="26.0" prefWidth="141.0" />
                   <Label layoutX="25.0" layoutY="60.0" opacity="0.6" prefHeight="20.0" prefWidth="77.0" text="Category ID">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtName" layoutX="25.0" layoutY="146.0" prefHeight="26.0" prefWidth="197.0" />
+                  <TextField fx:id="txtName" layoutX="25.0" layoutY="146.0" prefHeight="26.0" prefWidth="262.0" />
                   <Label layoutX="25.0" layoutY="126.0" opacity="0.6" prefHeight="20.0" prefWidth="95.0" text="Category Name">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
@@ -54,16 +54,16 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="383.0" layoutY="68.0" prefHeight="484.0" prefWidth="417.0" stylesheets="@style/mainform.css">
+            <AnchorPane layoutX="367.0" layoutY="68.0" prefHeight="488.0" prefWidth="481.0" stylesheets="@style/mainform.css">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />
                </styleClass>
                <children>
-                  <TableView fx:id="categoryTable" layoutX="13.0" layoutY="104.0" prefHeight="342.0" prefWidth="391.0">
+                  <TableView fx:id="categoryTable" layoutX="13.0" layoutY="104.0" prefHeight="342.0" prefWidth="450.0">
                     <columns>
                       <TableColumn fx:id="colId" prefWidth="118.4000244140625" text="Category ID" />
-                      <TableColumn fx:id="colName" prefWidth="272.0" text="Category Name" />
+                      <TableColumn fx:id="colName" prefWidth="329.60003662109375" text="Category Name" />
                     </columns>
                   </TableView>
                   <TextField fx:id="txtSearch" layoutX="14.0" layoutY="29.0" prefHeight="26.0" prefWidth="261.0" promptText="Search Book Category">
