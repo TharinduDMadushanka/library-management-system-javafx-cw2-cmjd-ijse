@@ -120,7 +120,44 @@ public class BooksFormController {
 
 
     public void updateOnAction(ActionEvent actionEvent) {
-        // Implement update logic
+        try {
+            String categoryId = txtCategoryId.getText();
+            CategoryDto category = categoryService.get(categoryId);
+
+            if (category == null) {
+                new Alert(Alert.AlertType.ERROR, "Category does not exist", ButtonType.OK).showAndWait();
+                return;
+            }
+
+            // Proceed with book addition
+            LocalDate localDate = txtYear.getValue();
+            String availability = txtYes.isSelected() ? "yes" : "no";
+
+            BookDto book = new BookDto(
+                    categoryId,
+                    txtBookId.getText(),
+                    txtTitle.getText(),
+                    txtAuthor.getText(),
+                    localDate,
+                    availability
+            );
+
+            String result = bookService.update(book);
+
+            if ("Success".equals(result)) {
+                loadBook();
+                clearFields();
+                setNewCategoryId();
+                setNewBookId();
+                new Alert(Alert.AlertType.INFORMATION, "Book Updated Successfully").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to update book").show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Error in update book..!").show();
+        }
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
@@ -139,7 +176,7 @@ public class BooksFormController {
         try {
             ArrayList<BookDto> books = bookService.getAll();
             if (books != null && !books.isEmpty()) {
-                bookList.addAll(books);
+                bookList.setAll(books);
                 bookTable.setItems(bookList);
             }
         } catch (Exception e) {
