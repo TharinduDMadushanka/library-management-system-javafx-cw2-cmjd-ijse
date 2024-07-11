@@ -11,12 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="bookContext" prefHeight="620.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.UIController.BooksFormController">
    <children>
       <AnchorPane prefHeight="620.0" prefWidth="862.0" styleClass="context" stylesheets="@style/mainform.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane layoutX="7.0" layoutY="14.0" prefHeight="594.0" prefWidth="338.0" stylesheets="@style/mainform.css">
+            <AnchorPane layoutX="7.0" layoutY="14.0" prefHeight="594.0" prefWidth="326.0" stylesheets="@style/mainform.css">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />
@@ -56,24 +55,24 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <RadioButton layoutX="23.0" layoutY="392.0" mnemonicParsing="false" text="Yes" />
-                  <RadioButton layoutX="82.0" layoutY="392.0" mnemonicParsing="false" text="No" />
-                  <Button layoutX="8.0" layoutY="436.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Add">
+                  <RadioButton fx:id="txtYes" layoutX="23.0" layoutY="392.0" mnemonicParsing="false" text="Yes" />
+                  <RadioButton fx:id="txtNo" layoutX="82.0" layoutY="392.0" mnemonicParsing="false" text="No" />
+                  <Button layoutX="3.0" layoutY="436.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Add">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="91.0" layoutY="436.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Update">
+                  <Button layoutX="83.0" layoutY="436.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Update">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="173.0" layoutY="436.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Delete">
+                  <Button layoutX="164.0" layoutY="436.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Delete">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="255.0" layoutY="436.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Clear">
+                  <Button layoutX="245.0" layoutY="436.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Clear">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -81,20 +80,20 @@
                   <DatePicker fx:id="txtYear" layoutX="23.0" layoutY="334.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="357.0" layoutY="14.0" prefHeight="594.0" prefWidth="494.0" stylesheets="@style/mainform.css">
+            <AnchorPane layoutX="341.0" layoutY="14.0" prefHeight="594.0" prefWidth="514.0" stylesheets="@style/mainform.css">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />
                </styleClass>
                <children>
-                  <TableView fx:id="bookTable" layoutX="4.0" layoutY="78.0" prefHeight="508.0" prefWidth="486.0">
+                  <TableView fx:id="bookTable" layoutX="4.0" layoutY="78.0" prefHeight="508.0" prefWidth="506.0">
                     <columns>
-                      <TableColumn fx:id="colCategoryId" prefWidth="49.5999755859375" text="Cat. ID" />
-                      <TableColumn fx:id="colBookId" prefWidth="51.99993896484375" text="Book ID" />
-                        <TableColumn fx:id="colTitle" prefWidth="139.199951171875" text="Title" />
-                        <TableColumn fx:id="colAuthor" prefWidth="101.5999755859375" text="Author" />
-                        <TableColumn fx:id="colYear" prefWidth="80.800048828125" text="Publish Year" />
-                        <TableColumn fx:id="colAvailable" prefWidth="63.2000732421875" text="Available" />
+                      <TableColumn fx:id="colCategoryId" prefWidth="56.0" text="Cat.ID" />
+                      <TableColumn fx:id="colBookId" prefWidth="63.20001220703125" text="BookID" />
+                        <TableColumn fx:id="colTitle" prefWidth="122.39996337890625" text="Title" />
+                        <TableColumn fx:id="colAuthor" prefWidth="103.20001220703125" text="Author" />
+                        <TableColumn fx:id="colYear" prefWidth="103.9998779296875" text="Publish Year" />
+                        <TableColumn fx:id="colAvailable" prefWidth="60.0" text="Available" />
                     </columns>
                   </TableView>
                   <TextField fx:id="txtSearch" layoutX="14.0" layoutY="21.0" onAction="#searchOnAction" prefHeight="30.0" prefWidth="311.0" promptText="Search Here...">

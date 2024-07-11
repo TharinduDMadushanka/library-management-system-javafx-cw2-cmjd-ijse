@@ -1,11 +1,22 @@
 package edu.ijse.UIController;
 
+import edu.ijse.dto.BookDto;
+import edu.ijse.dto.CategoryDto;
+import edu.ijse.service.custom.impl.BookServiceImpl;
+import edu.ijse.service.custom.impl.CategoryServiceImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class BooksFormController {
     public AnchorPane bookContext;
@@ -16,30 +27,169 @@ public class BooksFormController {
     public DatePicker txtYear;
     public TextField txtSearch;
     public TextField txtCategoryId;
-    public TableView bookTable;
-    public TableColumn colCategoryId;
-    public TableColumn colBookId;
-    public TableColumn colTitle;
-    public TableColumn colAuthor;
-    public TableColumn colYear;
-    public TableColumn colAvailable;
+    public TableView<BookDto> bookTable;
+    public TableColumn<BookDto,String> colCategoryId;
+    public TableColumn<BookDto,String> colBookId;
+    public TableColumn<BookDto,String> colTitle;
+    public TableColumn<BookDto,String> colAuthor;
+    public TableColumn<BookDto,String> colYear;
+    public TableColumn<BookDto,String> colAvailable;
+    public RadioButton txtYes;
+    public RadioButton txtNo;
+
+    private ToggleGroup availabilityGroup;
+    private CategoryServiceImpl categoryService = new CategoryServiceImpl();
+    private BookServiceImpl bookService = new BookServiceImpl();
+    private ObservableList<BookDto> bookList= FXCollections.observableArrayList();
+
+    public void initialize() {
+        colCategoryId.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+        colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        colYear.setCellValueFactory(new PropertyValueFactory<>("publishYear"));
+        colAvailable.setCellValueFactory(new PropertyValueFactory<>("available"));
+
+        availabilityGroup = new ToggleGroup();
+        txtYes.setToggleGroup(availabilityGroup);
+        txtNo.setToggleGroup(availabilityGroup);
+
+        loadBook();
+        setNewCategoryId();
+        setNewBookId();
+        bookTable.setOnMouseClicked(this::selectValue);
+    }
 
     public void categorySearchOnAction(ActionEvent actionEvent) {
+        try {
+            String categoryId = txtCategoryId.getText();
+            CategoryDto category = categoryService.get(categoryId);
+
+            if (category != null) {
+                txtCategoryShow.setText(category.getCategoryId() + " | " + category.getCategoryName());
+            } else {
+                txtCategoryShow.setText("No Category Found");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void addOnAction(ActionEvent actionEvent) {
+        try {
+            String categoryId = txtCategoryId.getText();
+            CategoryDto category = categoryService.get(categoryId);
+
+            if (category == null) {
+                new Alert(Alert.AlertType.ERROR, "Category does not exist", ButtonType.OK).showAndWait();
+                return;
+            }
+
+            // Proceed with book addition
+            LocalDate localDate = txtYear.getValue();
+            String availability = txtYes.isSelected() ? "yes" : "no";
+
+            BookDto book = new BookDto(
+                    categoryId,
+                    txtBookId.getText(),
+                    txtTitle.getText(),
+                    txtAuthor.getText(),
+                    localDate,
+                    availability
+            );
+
+            String result = bookService.save(book);
+
+            if ("Success".equals(result)) {
+                bookList.add(book);
+                bookTable.setItems(bookList);
+                clearFields();
+                setNewCategoryId();
+                setNewBookId();
+                new Alert(Alert.AlertType.INFORMATION, "Book Added Successfully").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to add book").show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Error in add book..!").show();
+        }
     }
 
+
     public void updateOnAction(ActionEvent actionEvent) {
+        // Implement update logic
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
+        // Implement delete logic
     }
 
     public void clearOnAction(ActionEvent actionEvent) {
+        clearFields();
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
+        // Implement search logic
+    }
 
+    private void loadBook() {
+        try {
+            ArrayList<BookDto> books = bookService.getAll();
+            if (books != null && !books.isEmpty()) {
+                bookList.addAll(books);
+                bookTable.setItems(bookList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clearFields() {
+        txtCategoryId.clear();
+        txtBookId.clear();
+        txtTitle.clear();
+        txtAuthor.clear();
+        txtCategoryShow.clear();
+        txtYear.setValue(null);
+        availabilityGroup.selectToggle(null); // Clear radio button selection
+    }
+
+    private void selectValue(MouseEvent mouseEvent) {
+        BookDto selectedBook = bookTable.getSelectionModel().getSelectedItem();
+        if (selectedBook != null) {
+            txtCategoryId.setText(selectedBook.getCategoryId());
+            txtBookId.setText(selectedBook.getBookId());
+            txtTitle.setText(selectedBook.getTitle());
+            txtAuthor.setText(selectedBook.getAuthor());
+            txtYear.setValue(selectedBook.getPublishYear());
+            // Set the radio button selection based on the availability value
+            String availability = selectedBook.getAvailable();
+            if ("yes".equalsIgnoreCase(availability)) {
+                txtYes.setSelected(true);
+            } else if ("no".equalsIgnoreCase(availability)) {
+                txtNo.setSelected(true);
+            } else {
+                availabilityGroup.selectToggle(null); // Clear selection if value is invalid
+            }
+        }
+    }
+    private String generateCategoryId() {
+
+        return "BC-";
+    }
+    private void setNewCategoryId() {
+        // Generate a new category ID and set it to the txtId field
+        String newCategoryId = generateCategoryId();
+        txtCategoryId.setText(newCategoryId);
+    }
+    private String generateBookId(){
+        return "B-";
+    }
+    private void setNewBookId() {
+        String newBookId = generateBookId();
+        txtBookId.setText(newBookId);
     }
 }

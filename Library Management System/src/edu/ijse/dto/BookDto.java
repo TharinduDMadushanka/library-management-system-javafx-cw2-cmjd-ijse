@@ -1,5 +1,6 @@
 package edu.ijse.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class BookDto {
@@ -8,13 +9,13 @@ public class BookDto {
     private String bookId;
     private String title;
     private String author;
-    private Date publishYear;
+    private LocalDate publishYear;
     private String available;
 
     public BookDto() {
     }
 
-    public BookDto(String categoryId, String bookId, String title, String author, Date publishYear, String available) {
+    public BookDto(String categoryId, String bookId, String title, String author, LocalDate publishYear, String available) {
         this.categoryId = categoryId;
         this.bookId = bookId;
         this.title = title;
@@ -55,11 +56,11 @@ public class BookDto {
         this.author = author;
     }
 
-    public Date getPublishYear() {
+    public LocalDate getPublishYear() {
         return publishYear;
     }
 
-    public void setPublishYear(Date publishYear) {
+    public void setPublishYear(LocalDate publishYear) {
         this.publishYear = publishYear;
     }
 

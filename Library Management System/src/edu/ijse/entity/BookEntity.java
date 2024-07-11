@@ -1,5 +1,6 @@
 package edu.ijse.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class BookEntity {
@@ -7,13 +8,13 @@ public class BookEntity {
     private String bookId;
     private String title;
     private String author;
-    private Date publishYear;
+    private LocalDate publishYear;
     private String available;
 
     public BookEntity() {
     }
 
-    public BookEntity(String categoryId, String bookId, String title, String author, Date publishYear, String available) {
+    public BookEntity(String categoryId, String bookId, String title, String author, LocalDate publishYear, String available) {
         this.categoryId = categoryId;
         this.bookId = bookId;
         this.title = title;
@@ -54,11 +55,11 @@ public class BookEntity {
         this.author = author;
     }
 
-    public Date getPublishYear() {
+    public LocalDate getPublishYear() {
         return publishYear;
     }
 
-    public void setPublishYear(Date publishYear) {
+    public void setPublishYear(LocalDate publishYear) {
         this.publishYear = publishYear;
     }
 

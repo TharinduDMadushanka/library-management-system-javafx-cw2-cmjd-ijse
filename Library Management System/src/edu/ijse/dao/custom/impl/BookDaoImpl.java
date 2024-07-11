@@ -34,7 +34,7 @@ public class BookDaoImpl implements BookDao {
                     rst.getString("categoryId"),
                     rst.getString("title"),
                     rst.getString("author"),
-                    rst.getDate("publishYear"),
+                    rst.getDate("publishYear").toLocalDate(),
                     rst.getString("available")
             );
             return entity;
@@ -52,7 +52,7 @@ public class BookDaoImpl implements BookDao {
                     rst.getString("categoryId"),
                     rst.getString("title"),
                     rst.getString("author"),
-                    rst.getDate("publishYear"),
+                    rst.getDate("publishYear").toLocalDate(),
                     rst.getString("available")
             );
             bookEntities.add(entity);
