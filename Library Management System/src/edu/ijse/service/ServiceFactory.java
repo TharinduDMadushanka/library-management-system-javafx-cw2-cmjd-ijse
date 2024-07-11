@@ -1,6 +1,7 @@
 package edu.ijse.service;
 
 import edu.ijse.service.custom.CategoryService;
+import edu.ijse.service.custom.impl.BookServiceImpl;
 import edu.ijse.service.custom.impl.CategoryServiceImpl;
 
 public class ServiceFactory {
@@ -19,12 +20,15 @@ public class ServiceFactory {
         switch (type) {
             case CATEGORY:
                 return new CategoryServiceImpl();
+            case BOOKS:
+                return new BookServiceImpl();
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-        CATEGORY
+        CATEGORY,
+        BOOKS
     }
 }
