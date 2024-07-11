@@ -195,9 +195,11 @@ public class BooksFormController {
                     bookTable.setItems(bookList);
                 } else {
                     new Alert(Alert.AlertType.INFORMATION, "No Book Found with ID: " + bookId).show();
+                    loadBook();
                 }
             } else {
                 new Alert(Alert.AlertType.ERROR, "Please enter a Book ID to search").show();
+                loadBook();
             }
         } catch (Exception e) {
             e.printStackTrace();
