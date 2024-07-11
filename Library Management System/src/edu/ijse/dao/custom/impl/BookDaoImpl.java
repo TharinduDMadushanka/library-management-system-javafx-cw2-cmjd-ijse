@@ -30,8 +30,8 @@ public class BookDaoImpl implements BookDao {
         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM books WHERE bookId=?", id);
         if (rst.next()) {
             BookEntity entity = new BookEntity(
-                    rst.getString("bookId"),
                     rst.getString("categoryId"),
+                    rst.getString("bookId"),
                     rst.getString("title"),
                     rst.getString("author"),
                     rst.getDate("publishYear").toLocalDate(),
@@ -48,8 +48,8 @@ public class BookDaoImpl implements BookDao {
         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM books");
         while (rst.next()) {
             BookEntity entity = new BookEntity(
-                    rst.getString("bookId"),
                     rst.getString("categoryId"),
+                    rst.getString("bookId"),
                     rst.getString("title"),
                     rst.getString("author"),
                     rst.getDate("publishYear").toLocalDate(),

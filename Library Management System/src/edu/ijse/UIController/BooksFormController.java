@@ -155,6 +155,8 @@ public class BooksFormController {
         txtCategoryShow.clear();
         txtYear.setValue(null);
         availabilityGroup.selectToggle(null); // Clear radio button selection
+        setNewCategoryId();
+        setNewBookId();
     }
 
     private void selectValue(MouseEvent mouseEvent) {
