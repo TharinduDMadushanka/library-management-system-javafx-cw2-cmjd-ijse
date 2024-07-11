@@ -10,26 +10,26 @@ import java.util.ArrayList;
 public class CategoryDaoImpl implements CategoryDao {
     @Override
     public boolean create(CategoryEntity t) throws Exception {
-        return CrudUtil.executeUpdate("INSERT INTO category VALUES(?,?)",t.getId(),t.getName());
+        return CrudUtil.executeUpdate("INSERT INTO category VALUES(?,?)",t.getCategoryId(),t.getCategoryName());
     }
 
     @Override
     public boolean update(CategoryEntity t) throws Exception {
-        return CrudUtil.executeUpdate("UPDATE category SET name=? WHERE id=?",t.getName(),t.getId());
+        return CrudUtil.executeUpdate("UPDATE category SET categoryName=? WHERE categoryId=?",t.getCategoryName(),t.getCategoryId());
     }
 
     @Override
     public boolean delete(String id) throws Exception {
-        return CrudUtil.executeUpdate("DELETE FROM category WHERE id=?",id);
+        return CrudUtil.executeUpdate("DELETE FROM category WHERE categoryId=?",id);
     }
 
     @Override
     public CategoryEntity get(String id) throws Exception {
-        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM category WHERE id=?",id);
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM category WHERE categoryId=?",id);
         if(rst.next()){
             CategoryEntity entity = new CategoryEntity(
-                    rst.getString("id"),
-                    rst.getString("name")
+                    rst.getString("categoryId"),
+                    rst.getString("categoryName")
             );
             return entity;
         }
@@ -42,8 +42,8 @@ public class CategoryDaoImpl implements CategoryDao {
         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM category");
         while(rst.next()){
             CategoryEntity entity = new CategoryEntity(
-                    rst.getString("id"),
-                    rst.getString("name")
+                    rst.getString("categoryId"),
+                    rst.getString("categoryName")
             );
             categoryEntities.add(entity);
         }

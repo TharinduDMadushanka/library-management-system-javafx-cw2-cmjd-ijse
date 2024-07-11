@@ -28,8 +28,8 @@ public class BookCategoryFormController {
     private ObservableList<CategoryDto> categoryList = FXCollections.observableArrayList();
 
     public void initialize() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
 
         loadCategory();
         setNewCategoryId();
@@ -133,8 +133,8 @@ public class BookCategoryFormController {
     private void selectCategory(MouseEvent mouseEvent) {
         CategoryDto selectCategory = categoryTable.getSelectionModel().getSelectedItem();
         if (selectCategory != null) {
-            txtId.setText(selectCategory.getId());
-            txtName.setText(selectCategory.getName());
+            txtId.setText(selectCategory.getCategoryId());
+            txtName.setText(selectCategory.getCategoryName());
         }
     }
 

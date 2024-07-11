@@ -53,15 +53,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     private CategoryEntity getCategoryEntity(CategoryDto categoryDto) throws Exception {
         return new CategoryEntity(
-                categoryDto.getId(),
-                categoryDto.getName()
+                categoryDto.getCategoryId(),
+                categoryDto.getCategoryName()
         );
     }
 
     private CategoryDto getCategoryDto(CategoryEntity entity) throws Exception {
         return new CategoryDto(
-                entity.getId(),
-                entity.getName()
+                entity.getCategoryId(),
+                entity.getCategoryName()
         );
     }
 }

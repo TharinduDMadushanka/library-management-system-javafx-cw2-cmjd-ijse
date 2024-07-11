@@ -2,38 +2,38 @@ package edu.ijse.dto;
 
 public class CategoryDto {
 
-    private String id;
-    private String name;
+    private String categoryId;
+    private String categoryName;
 
     public CategoryDto() {
     }
 
-    public CategoryDto(String id, String name) {
-        this.id = id;
-        this.name = name;
+    public CategoryDto(String categoryId, String categoryName) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
-    public String getId() {
-        return id;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getName() {
-        return name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     @Override
     public String toString() {
         return "CategoryDto{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                "categoryId='" + categoryId + '\'' +
+                ", categoryName='" + categoryName + '\'' +
                 '}';
     }
 }
