@@ -161,7 +161,23 @@ public class BooksFormController {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
-        // Implement delete logic
+
+        try {
+
+            String result =bookService.delete(txtBookId.getText());
+            if ("Success".equals(result)) {
+                loadBook();
+                clearFields();
+                new Alert(Alert.AlertType.INFORMATION, "Book Deleted Successfully").showAndWait();
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Failed to delete book").show();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Error in delete book..!").show();
+        }
+
     }
 
     public void clearOnAction(ActionEvent actionEvent) {
