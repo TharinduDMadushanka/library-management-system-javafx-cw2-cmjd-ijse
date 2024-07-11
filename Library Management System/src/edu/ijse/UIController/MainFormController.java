@@ -18,6 +18,7 @@ public class MainFormController {
     }
 
     public void bookOnAction(ActionEvent actionEvent) {
+        setContext("BooksForm");
     }
 
     public void memberOnAction(ActionEvent actionEvent) {

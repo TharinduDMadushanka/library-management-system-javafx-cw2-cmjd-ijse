@@ -40,5 +40,6 @@ public class BooksFormController {
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
+
     }
 }
