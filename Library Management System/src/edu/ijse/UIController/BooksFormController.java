@@ -185,7 +185,24 @@ public class BooksFormController {
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
-        // Implement search logic
+        try {
+            String bookId = txtSearch.getText().trim();
+            if (!bookId.isEmpty()) {
+                BookDto book = bookService.get(bookId);
+                if (book != null) {
+                    bookList.clear();
+                    bookList.add(book);
+                    bookTable.setItems(bookList);
+                } else {
+                    new Alert(Alert.AlertType.INFORMATION, "No Book Found with ID: " + bookId).show();
+                }
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Please enter a Book ID to search").show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Error occurred while searching for the book").show();
+        }
     }
 
     private void loadBook() {
@@ -231,20 +248,13 @@ public class BooksFormController {
             }
         }
     }
-    private String generateCategoryId() {
 
-        return "BC-";
-    }
     private void setNewCategoryId() {
-        // Generate a new category ID and set it to the txtId field
-        String newCategoryId = generateCategoryId();
+        String newCategoryId = "BC-";
         txtCategoryId.setText(newCategoryId);
     }
-    private String generateBookId(){
-        return "B-";
-    }
     private void setNewBookId() {
-        String newBookId = generateBookId();
+        String newBookId = "B-";
         txtBookId.setText(newBookId);
     }
 }

@@ -96,11 +96,16 @@
                         <TableColumn fx:id="colAvailable" prefWidth="60.0" text="Available" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="txtSearch" layoutX="14.0" layoutY="21.0" onAction="#searchOnAction" prefHeight="30.0" prefWidth="311.0" promptText="Search Here...">
+                  <TextField fx:id="txtSearch" layoutX="14.0" layoutY="21.0" prefHeight="30.0" prefWidth="311.0" promptText="Enter Book ID to Search...">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </TextField>
+                  <Button layoutX="339.0" layoutY="20.0" mnemonicParsing="false" onAction="#searchOnAction" prefHeight="26.0" prefWidth="66.0" styleClass="login-btn" stylesheets="@style/login.css" text="Search">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <Label layoutX="24.0" layoutY="24.0" opacity="0.71" prefHeight="20.0" prefWidth="168.0" text="Manage Books">
