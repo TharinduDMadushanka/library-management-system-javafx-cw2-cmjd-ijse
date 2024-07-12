@@ -40,7 +40,7 @@
                      </cursor>
                   </Button>
                   <Line endX="80.0" layoutX="118.0" layoutY="297.0" opacity="0.3" startX="-100.0" />
-                  <Button layoutX="7.0" layoutY="255.0" mnemonicParsing="false" onAction="#memberOnAction" prefHeight="50.0" prefWidth="157.0" styleClass="nav-btn" stylesheets="@style/mainform.css" text="Members">
+                  <Button layoutX="6.0" layoutY="255.0" mnemonicParsing="false" onAction="#memberOnAction" prefHeight="50.0" prefWidth="157.0" styleClass="nav-btn" stylesheets="@style/mainform.css" text="Members">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -49,7 +49,7 @@
                      </cursor>
                   </Button>
                   <Line endX="80.0" layoutX="117.0" layoutY="349.0" opacity="0.3" startX="-100.0" />
-                  <Button layoutX="6.0" layoutY="307.0" mnemonicParsing="false" onAction="#borrowingOnAction" prefHeight="50.0" prefWidth="157.0" styleClass="nav-btn" stylesheets="@style/mainform.css" text="Borrowing">
+                  <Button layoutX="6.0" layoutY="307.0" mnemonicParsing="false" onAction="#issueBookOnAction" prefHeight="50.0" prefWidth="157.0" styleClass="nav-btn" stylesheets="@style/mainform.css" text="Issue Books">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -57,7 +57,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="8.0" layoutY="359.0" mnemonicParsing="false" onAction="#returnOnAction" prefHeight="50.0" prefWidth="157.0" styleClass="nav-btn" stylesheets="@style/mainform.css" text="Return">
+                  <Button layoutX="6.0" layoutY="359.0" mnemonicParsing="false" onAction="#returnBookOnAction" prefHeight="50.0" prefWidth="157.0" styleClass="nav-btn" stylesheets="@style/mainform.css" text="Return Books">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -66,6 +66,15 @@
                      </cursor>
                   </Button>
                   <Button fx:id="btnLogOut" layoutX="17.0" layoutY="581.0" mnemonicParsing="false" onAction="#logoutOnAction" prefHeight="26.0" prefWidth="70.0" styleClass="sign-out" stylesheets="@style/mainform.css" text="Logout" textFill="WHITE" />
+                  <Line endX="80.0" layoutX="116.0" layoutY="400.0" opacity="0.3" startX="-100.0" />
+                  <Button layoutX="6.0" layoutY="409.0" mnemonicParsing="false" onAction="#statisticOnAction" prefHeight="50.0" prefWidth="157.0" styleClass="nav-btn" stylesheets="@style/mainform.css" text="Statistics">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
          </left>

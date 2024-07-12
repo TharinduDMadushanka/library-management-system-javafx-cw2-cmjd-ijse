@@ -205,6 +205,7 @@ public class MemberFormController {
         if (txtAge != null) txtAge.clear();
         if (txtDob != null) txtDob.setValue(null);
         if (txtGender != null) txtGender.clear();
+        setMemberId();
     }
 
     private void selectMember(MouseEvent mouseEvent) {

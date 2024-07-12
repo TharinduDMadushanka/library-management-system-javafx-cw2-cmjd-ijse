@@ -25,14 +25,17 @@ public class MainFormController {
         setContext("MemberForm");
     }
 
-    public void borrowingOnAction(ActionEvent actionEvent) {
+    public void issueBookOnAction(ActionEvent actionEvent) {
     }
 
-    public void returnOnAction(ActionEvent actionEvent) {
+    public void returnBookOnAction(ActionEvent actionEvent) {
     }
 
     public void logoutOnAction(ActionEvent actionEvent) throws IOException {
         setUI("LoginForm");
+    }
+
+    public void statisticOnAction(ActionEvent actionEvent) {
     }
 
     private void setUI(String location) throws IOException {
@@ -51,4 +54,5 @@ public class MainFormController {
             e.printStackTrace();
         }
     }
+
 }
