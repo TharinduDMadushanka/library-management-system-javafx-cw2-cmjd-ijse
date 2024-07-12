@@ -37,5 +37,6 @@ public class MemberFormController {
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
+
     }
 }
