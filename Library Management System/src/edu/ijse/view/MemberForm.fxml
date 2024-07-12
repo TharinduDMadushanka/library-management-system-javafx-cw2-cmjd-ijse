@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="memberContext" prefHeight="620.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.UIController.MemberFormController">
    <children>
       <AnchorPane layoutX="22.0" layoutY="22.0" prefHeight="620.0" prefWidth="862.0" styleClass="context" stylesheets="@style/mainform.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -123,9 +122,9 @@
                         <TableColumn fx:id="colAddress" prefWidth="146.40003967285156" text="Address" />
                         <TableColumn fx:id="colMobile" prefWidth="119.20001220703125" text="Mobile" />
                         <TableColumn fx:id="colEmail" prefWidth="156.00006103515625" text="Email" />
-                        <TableColumn fx:id="colDob" prefWidth="103.20001220703125" text="DoB" />
-                        <TableColumn fx:id="colAge" prefWidth="33.5999755859375" text="Age" />
-                        <TableColumn fx:id="colGender" prefWidth="63.2000732421875" text="Gender" />
+                        <TableColumn fx:id="colAge" prefWidth="33.60003662109375" text="Age" />
+                        <TableColumn fx:id="colDob" prefWidth="96.7999267578125" text="DoB" />
+                        <TableColumn fx:id="colGender" prefWidth="71.2000732421875" text="Gender" />
                     </columns>
                      <cursor>
                         <Cursor fx:constant="HAND" />
