@@ -131,7 +131,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </TableView>
-                  <TextField layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="318.0" />
+                  <TextField layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="318.0" promptText="Eneter Member ID to Search...">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </TextField>
                   <Button layoutX="345.0" layoutY="8.0" mnemonicParsing="false" onAction="#searchOnAction" prefHeight="26.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Search">
                      <font>
                         <Font name="System Bold" size="14.0" />

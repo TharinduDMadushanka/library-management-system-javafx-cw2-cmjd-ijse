@@ -22,6 +22,7 @@ public class MainFormController {
     }
 
     public void memberOnAction(ActionEvent actionEvent) {
+        setContext("MemberForm");
     }
 
     public void borrowingOnAction(ActionEvent actionEvent) {
