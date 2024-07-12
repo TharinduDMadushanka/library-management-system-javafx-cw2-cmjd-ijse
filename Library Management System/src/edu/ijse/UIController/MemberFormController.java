@@ -99,6 +99,34 @@ public class MemberFormController {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+        LocalDate dob = txtDob.getValue();
+
+        MemberDto member = new MemberDto(
+                txtId.getText(),
+                txtName.getText(),
+                txtAddress.getText(),
+                txtMobile.getText(),
+                txtEmail.getText(),
+                Integer.parseInt(txtAge.getText()),
+                dob,
+                txtGender.getText()
+        );
+
+        try {
+
+            String result = memberService.update(member);
+            if("Success".equals(result)) {
+                loadMember();
+                new Alert(Alert.AlertType.INFORMATION,"Member Updated Successfully").show();
+                clearFields();
+                setMemberId();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.INFORMATION,"Member update failed..!").show();
+        }
+
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
