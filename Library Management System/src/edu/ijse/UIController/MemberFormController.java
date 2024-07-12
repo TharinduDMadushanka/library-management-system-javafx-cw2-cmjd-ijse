@@ -25,6 +25,8 @@ public class MemberFormController {
     public TextField txtGender;
     public ComboBox cmbGender;
     public TextField txtId;
+    public TextField txtSearch;
+
     public TableView<MemberDto> memberTable;
     public TableColumn<MemberDto,String> colId;
     public TableColumn<MemberDto,String> colName;
@@ -34,6 +36,7 @@ public class MemberFormController {
     public TableColumn<MemberDto,String> colDob;
     public TableColumn<MemberDto,String> colAge;
     public TableColumn<MemberDto,String> colGender;
+
 
 
     private MemberService memberService = new MemberServiceImpl();
@@ -153,6 +156,30 @@ public class MemberFormController {
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
+
+        try{
+
+            String memberId = txtSearch.getText().trim();
+
+            if (!memberId.isEmpty()){
+                MemberDto member = memberService.get(memberId);
+                if (member != null){
+                    memberList.clear();
+                    memberList.add(member);
+                    memberTable.setItems(memberList);
+                }else {
+                    new Alert(Alert.AlertType.INFORMATION,"No member found with ID "+memberId).show();
+                    loadMember();
+                }
+            }else {
+                new Alert(Alert.AlertType.INFORMATION,"Please enter a Member ID to search").show();
+                loadMember();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.INFORMATION,"Member search failed..!").show();
+        }
 
     }
 

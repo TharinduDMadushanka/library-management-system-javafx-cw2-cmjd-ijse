@@ -131,7 +131,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </TableView>
-                  <TextField layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="318.0" promptText="Eneter Member ID to Search...">
+                  <TextField fx:id="txtSearch" layoutX="14.0" layoutY="10.0" prefHeight="20.0" prefWidth="318.0" promptText="Eneter Member ID to Search...">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
