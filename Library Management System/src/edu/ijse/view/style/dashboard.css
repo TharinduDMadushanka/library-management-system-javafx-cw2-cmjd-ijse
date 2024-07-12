@@ -1,0 +1,30 @@
+.shadow {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 20, 0.2, 0, 4);
+}
+
+.bg {
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 8px;
+
+}
+.title-bar{
+    -fx-background-color:#13414F;
+    -fx-background-radius: 8px;
+}
+.button{
+    -fx-background-color: #8FBABF;
+    -fx-cursor: hand;
+    -fx-text-fill: #262626;
+    -fx-alignment: CENTER-RIGHT;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0); /* Glowing shadow effect */
+    -fx-border-width: 2px; /* Border width for popping up effect */
+    -fx-border-color: transparent; /* Initially transparent border */
+    -fx-transition: background-color 0.3s, translateZ 0.3s; /* Transition for color change and pop-up effect */
+}
+
+.button:hover {
+    -fx-background-color: #6D9CA8; /* Color change on hover */
+    -fx-border-color: #262626; /* Border color change on hover */
+    -fx-translate-z: 5; /* Pop-up effect on hover */
+}

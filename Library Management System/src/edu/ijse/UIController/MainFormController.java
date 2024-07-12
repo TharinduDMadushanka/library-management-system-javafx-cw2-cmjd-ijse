@@ -13,6 +13,10 @@ public class MainFormController {
     public AnchorPane mainContext;
     public Button btnLogOut;
 
+    public void initialize() {
+        setContext("");
+    }
+
     public void bookCategoryOnAction(ActionEvent actionEvent) {
         setContext("BookCategoryForm");
     }
