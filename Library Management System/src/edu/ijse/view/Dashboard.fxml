@@ -35,7 +35,7 @@
                   <AnchorPane layoutY="559.0" prefHeight="35.0" prefWidth="838.0" styleClass="title-bar" stylesheets="@style/dashboard.css">
                      <children>
                         <Label layoutX="11.0" layoutY="9.0" text="\@Tharindu Dilshan Madushanka " textFill="WHITE" />
-                        <Label fx:id="txtDateTime" layoutX="715.0" layoutY="9.0" text="2024-07-12  2:45 pm" textFill="WHITE" />
+                        <Label fx:id="txtDateTime" layoutX="701.0" layoutY="9.0" text="2024-07-12  2:45 pm" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                   <Button layoutX="365.0" layoutY="149.0" mnemonicParsing="false" onAction="#bookOnAction" prefHeight="98.0" prefWidth="138.0" stylesheets="@style/dashboard.css" />

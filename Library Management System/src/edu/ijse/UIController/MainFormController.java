@@ -14,7 +14,7 @@ public class MainFormController {
     public Button btnLogOut;
 
     public void initialize() {
-        setContext("");
+        setContext("Dashboard");
     }
 
     public void bookCategoryOnAction(ActionEvent actionEvent) {
