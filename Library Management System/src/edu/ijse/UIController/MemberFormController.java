@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MemberFormController {
@@ -64,6 +65,36 @@ public class MemberFormController {
 
 
     public void addOnAction(ActionEvent actionEvent) {
+
+        LocalDate dob = txtDob.getValue();
+
+        MemberDto member = new MemberDto(
+                txtId.getText(),
+                txtName.getText(),
+                txtAddress.getText(),
+                txtMobile.getText(),
+                txtEmail.getText(),
+                Integer.parseInt(txtAge.getText()),
+                dob,
+                txtGender.getText()
+        );
+
+        try {
+
+            String result = memberService.save(member);
+            if("success".equals(result)) {
+                memberList.add(member);
+                loadMember();
+                memberTable.refresh();
+                clearFields();
+                new Alert(Alert.AlertType.INFORMATION,"Member Added Successfully").show();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.INFORMATION,"Member save failed..!").show();
+        }
+
     }
 
     public void updateOnAction(ActionEvent actionEvent) {

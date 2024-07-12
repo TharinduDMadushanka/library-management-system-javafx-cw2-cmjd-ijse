@@ -118,14 +118,14 @@
                <children>
                   <TableView fx:id="memberTable" layoutX="12.0" layoutY="54.0" prefHeight="307.0" prefWidth="816.0">
                     <columns>
-                      <TableColumn fx:id="colId" prefWidth="38.39996337890625" text="ID" />
-                      <TableColumn fx:id="colName" prefWidth="160.80004501342773" text="Name" />
+                      <TableColumn fx:id="colId" prefWidth="46.39999008178711" text="ID" />
+                      <TableColumn fx:id="colName" prefWidth="153.5999755859375" text="Name" />
                         <TableColumn fx:id="colAddress" prefWidth="146.40003967285156" text="Address" />
                         <TableColumn fx:id="colMobile" prefWidth="119.20001220703125" text="Mobile" />
                         <TableColumn fx:id="colEmail" prefWidth="156.00006103515625" text="Email" />
                         <TableColumn fx:id="colAge" prefWidth="33.60003662109375" text="Age" />
-                        <TableColumn fx:id="colDob" prefWidth="96.7999267578125" text="DoB" />
-                        <TableColumn fx:id="colGender" prefWidth="71.2000732421875" text="Gender" />
+                        <TableColumn fx:id="colDob" prefWidth="89.5999755859375" text="DoB" />
+                        <TableColumn fx:id="colGender" prefWidth="79.2000732421875" text="Gender" />
                     </columns>
                      <cursor>
                         <Cursor fx:constant="HAND" />
