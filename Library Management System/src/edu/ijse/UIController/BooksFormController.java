@@ -57,6 +57,8 @@ public class BooksFormController {
         loadBook();
         setNewCategoryId();
         setNewBookId();
+
+        bookTable.setItems(bookList);
         bookTable.setOnMouseClicked(this::selectValue);
     }
 

@@ -68,8 +68,8 @@
                      </font>
                   </Label>
                   <DatePicker fx:id="txtDob" layoutX="189.0" layoutY="120.0" prefHeight="26.0" prefWidth="143.0" />
-                  <ComboBox fx:id="txtGender" layoutX="373.0" layoutY="171.0" prefHeight="26.0" prefWidth="91.0" />
-                  <Button layoutX="509.0" layoutY="162.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Add">
+                  <ComboBox fx:id="cmbGender" layoutX="373.0" layoutY="171.0" prefHeight="26.0" prefWidth="104.0" promptText="Gender" />
+                  <Button layoutX="751.0" layoutY="11.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Add">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -77,7 +77,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="589.0" layoutY="162.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Update">
+                  <Button layoutX="751.0" layoutY="63.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Update">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -85,7 +85,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="670.0" layoutY="162.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Delete">
+                  <Button layoutX="751.0" layoutY="112.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Delete">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -101,6 +101,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <TextField fx:id="txtGender" layoutX="493.0" layoutY="172.0" prefHeight="26.0" prefWidth="91.0" />
                </children>
             </AnchorPane>
             <TextField fx:id="txtId" layoutX="25.0" layoutY="75.0" prefHeight="26.0" prefWidth="143.0" />

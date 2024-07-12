@@ -33,6 +33,8 @@ public class BookCategoryFormController {
 
         loadCategory();
         setNewCategoryId();
+
+        categoryTable.setItems(categoryList);
         categoryTable.setOnMouseClicked(this::selectCategory);
     }
 
