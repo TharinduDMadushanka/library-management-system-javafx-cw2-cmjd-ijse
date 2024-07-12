@@ -130,6 +130,22 @@ public class MemberFormController {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
+        String id = txtId.getText();
+
+        try {
+
+            String result = memberService.delete(id);
+            if("Success".equals(result)) {
+                loadMember();
+                new Alert(Alert.AlertType.INFORMATION,"Member Deleted Successfully").show();
+                clearFields();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.INFORMATION,"Member delete failed..!").show();
+        }
+
     }
 
     public void clearOnAction(ActionEvent actionEvent) {
