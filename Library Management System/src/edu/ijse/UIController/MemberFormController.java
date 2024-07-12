@@ -52,6 +52,7 @@ public class MemberFormController {
         colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
         loadMember();
+        setMemberId();
 
         memberTable.setItems(memberList);
         memberTable.setOnMouseClicked(this::selectMember);
@@ -82,12 +83,12 @@ public class MemberFormController {
         try {
 
             String result = memberService.save(member);
-            if("success".equals(result)) {
+            if("Success".equals(result)) {
                 memberList.add(member);
-                loadMember();
                 memberTable.refresh();
-                clearFields();
                 new Alert(Alert.AlertType.INFORMATION,"Member Added Successfully").show();
+                clearFields();
+                setMemberId();
             }
 
         }catch (Exception e){
@@ -104,6 +105,7 @@ public class MemberFormController {
     }
 
     public void clearOnAction(ActionEvent actionEvent) {
+        clearFields();
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
@@ -124,16 +126,15 @@ public class MemberFormController {
         }
     }
 
-    private void clearFields(){
-        txtId.clear();
-        txtName.clear();
-        txtAddress.clear();
-        txtMobile.clear();
-        txtEmail.clear();
-        txtAge.clear();
-        txtGender.clear();
-        cmbGender.getSelectionModel().clearSelection();
-        txtDob.setValue(null);
+    private void clearFields() {
+        if (txtId != null) txtId.clear();
+        if (txtName != null) txtName.clear();
+        if (txtAddress != null) txtAddress.clear();
+        if (txtMobile != null) txtMobile.clear();
+        if (txtEmail != null) txtEmail.clear();
+        if (txtAge != null) txtAge.clear();
+        if (txtDob != null) txtDob.setValue(null);
+        if (txtGender != null) txtGender.clear();
     }
 
     private void selectMember(MouseEvent mouseEvent){
@@ -148,5 +149,9 @@ public class MemberFormController {
             txtDob.setValue(selectedMember.getDob());
             cmbGender.getSelectionModel().select(selectedMember.getGender());
         }
+    }
+    private void setMemberId(){
+        String memberId = "M-";
+        txtId.setText(memberId);
     }
 }
