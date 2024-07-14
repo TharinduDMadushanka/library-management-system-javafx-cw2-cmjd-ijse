@@ -39,5 +39,6 @@ public class IssueBookFormController {
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
+
     }
 }
