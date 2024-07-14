@@ -3,6 +3,7 @@ package edu.ijse.dao;
 import edu.ijse.dao.custom.CategoryDao;
 import edu.ijse.dao.custom.impl.BookDaoImpl;
 import edu.ijse.dao.custom.impl.CategoryDaoImpl;
+import edu.ijse.dao.custom.impl.IssueBookDaoImpl;
 import edu.ijse.dao.custom.impl.MemberDaoImpl;
 
 public class DaoFactory {
@@ -25,6 +26,8 @@ public class DaoFactory {
                 return new BookDaoImpl();
             case MEMBERS:
                 return new MemberDaoImpl();
+            case ISSUE_BOOKS:
+                return new IssueBookDaoImpl();
             default:
                 return null;
         }
@@ -33,6 +36,7 @@ public class DaoFactory {
     public enum DaoType{
         CATEGORY,
         BOOKS,
-        MEMBERS
+        MEMBERS,
+        ISSUE_BOOKS
     }
 }
