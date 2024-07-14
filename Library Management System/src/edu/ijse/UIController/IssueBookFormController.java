@@ -98,50 +98,48 @@ public class IssueBookFormController {
 
     public void addOnAction(ActionEvent actionEvent) {
 
-        try {
+        if(!txtMemberDetails.getText().equalsIgnoreCase("Member not found..!")) {
+            try {
 
-            String bookId = txtBookId.getText();
-            String memberId = txtMemberId.getText();
+                String bookId = txtBookId.getText();
+                String memberId = txtMemberId.getText();
 
-            BookDto book = bookService.get(bookId);
-            if (book == null) {
-                new Alert(Alert.AlertType.ERROR, "Book not found").show();
-                return;
-            } else if (!"yes".equalsIgnoreCase(book.getAvailable())) {
-                new Alert(Alert.AlertType.INFORMATION, "Book is not available on this time..!").show();
-                return;
+                LocalDate issueDate = txtIssueDate.getValue();
+                LocalDate dueDate = txtDueDate.getValue();
+
+                IssueBookDto issueBook = new IssueBookDto(
+                        txtIssueId.getText(),
+                        bookId,
+                        txtBookDetails.getText(),
+                        memberId,
+                        txtMemberDetails.getText(),
+                        issueDate,
+                        dueDate
+                );
+
+                String result = issueBookService.save(issueBook);
+                if("Success".equals(result)) {
+
+                    BookDto book = bookService.get(bookId);
+                    if(book != null && "yes".equalsIgnoreCase(book.getAvailable())) {
+                        book.setAvailable("no");
+                        bookService.update(book);
+                    }
+
+                    issueBookList.add(issueBook);
+                    issueBookTable.setItems(issueBookList);
+                    clearFields();
+                    new Alert(Alert.AlertType.INFORMATION, "Book successfully added").show();
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to add book..!").show();
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Error in issuing book").show();
             }
-
-            MemberDto member = memberService.get(memberId);
-            if (member == null) {
-                new Alert(Alert.AlertType.ERROR, "Member not found").show();
-                return;
-            }
-
-            LocalDate issueDate = txtIssueDate.getValue();
-            LocalDate dueDate = txtDueDate.getValue();
-
-            IssueBookDto issueBook = new IssueBookDto(
-                    txtIssueId.getText(),
-                    bookId,
-                    txtBookDetails.getText(),
-                    memberId,
-                    txtMemberDetails.getText(),
-                    issueDate,
-                    dueDate
-            );
-
-            String result = issueBookService.save(issueBook);
-            if("Success".equals(result)) {
-                issueBookList.add(issueBook);
-                issueBookTable.setItems(issueBookList);
-                clearFields();
-                new Alert(Alert.AlertType.INFORMATION, "Book successfully added").show();
-            }
-
-        }catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Error in issuing book").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Please enter valid details").show();
         }
 
     }
