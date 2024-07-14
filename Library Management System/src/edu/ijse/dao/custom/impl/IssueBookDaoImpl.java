@@ -22,7 +22,7 @@ public class IssueBookDaoImpl implements IssueBookDao {
 
     @Override
     public boolean delete(String id) throws Exception {
-        return CrudUtil.executeUpdate("DELETE issuebooks WHERE issueId=?", id);
+        return CrudUtil.executeUpdate("DELETE FROM issuebooks WHERE issueId=?", id);
     }
 
     @Override

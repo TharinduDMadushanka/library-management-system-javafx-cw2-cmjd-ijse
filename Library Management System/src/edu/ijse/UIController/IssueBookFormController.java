@@ -185,6 +185,28 @@ public class IssueBookFormController {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
+
+        String issueId = txtIssueId.getText();
+        String bookId = txtBookId.getText();
+        try {
+
+            String result = issueBookService.delete(issueId);
+            if("Success".equals(result)) {
+                BookDto book = bookService.get(bookId);
+                if(book != null && "no".equalsIgnoreCase(book.getAvailable())) {
+                    book.setAvailable("yes");
+                    bookService.update(book);
+                }
+                loadIssueBook();
+                clearFields();
+                new Alert(Alert.AlertType.INFORMATION, "Book successfully deleted").show();
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Failed to delete book..!").show();
+        }
+
     }
 
     public void clearOnAction(ActionEvent actionEvent) {
@@ -192,6 +214,30 @@ public class IssueBookFormController {
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
+
+        try {
+
+            String issueId = txtSearch.getText();
+
+            if (!issueId.isEmpty()) {
+                IssueBookDto issueBook = issueBookService.get(issueId);
+                if (issueBook != null) {
+                    issueBookList.clear();
+                    issueBookList.add(issueBook);
+                    issueBookTable.setItems(issueBookList);
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "No issue book found with ID "+issueId).show();
+                    loadIssueBook();
+                }
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Please enter Issue book ID to search").show();
+                loadIssueBook();
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Issuing book search Failed..!").show();
+        }
 
     }
 
