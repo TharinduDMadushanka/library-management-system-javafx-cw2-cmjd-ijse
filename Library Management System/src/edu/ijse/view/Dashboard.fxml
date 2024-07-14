@@ -60,7 +60,7 @@
                         <Font name="Arial Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Button layoutX="364.0" layoutY="343.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="138.0" stylesheets="@style/dashboard.css" />
+                  <Button layoutX="364.0" layoutY="343.0" mnemonicParsing="false" onAction="#returnBookOnAction" prefHeight="98.0" prefWidth="138.0" stylesheets="@style/dashboard.css" />
                   <FontAwesomeIcon glyphName="CHECK_CIRCLE" layoutX="418.0" layoutY="397.0" size="3em" />
                   <Label layoutX="392.0" layoutY="413.0" text="Return Books">
                      <font>

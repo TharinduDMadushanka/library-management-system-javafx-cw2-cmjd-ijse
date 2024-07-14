@@ -36,6 +36,9 @@ public class DashboardController implements Initializable {
     public void issueBookOnAction(ActionEvent actionEvent) {
     }
 
+    public void returnBookOnAction(ActionEvent actionEvent) {
+    }
+
     public void statsOnAction(ActionEvent actionEvent) {
     }
 
@@ -56,4 +59,5 @@ public class DashboardController implements Initializable {
         // Set the formatted date and time to the label
         txtDateTime.setText(formattedDateTime);
     }
+
 }
