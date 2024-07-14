@@ -109,7 +109,7 @@ public class IssueBookFormController {
 
                 IssueBookDto issueBook = new IssueBookDto(
                         txtIssueId.getText(),
-                        bookId,
+                        txtBookId.getText(),
                         txtBookDetails.getText(),
                         memberId,
                         txtMemberDetails.getText(),
@@ -145,6 +145,43 @@ public class IssueBookFormController {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+
+        if(!txtMemberDetails.getText().equalsIgnoreCase("Member not found..!")) {
+            try {
+
+                String bookId = txtBookId.getText();
+                String memberId = txtMemberId.getText();
+
+                LocalDate issueDate = txtIssueDate.getValue();
+                LocalDate dueDate = txtDueDate.getValue();
+
+                IssueBookDto issueBook = new IssueBookDto(
+                        txtIssueId.getText(),
+                        bookId,
+                        txtBookDetails.getText(),
+                        memberId,
+                        txtMemberDetails.getText(),
+                        issueDate,
+                        dueDate
+                );
+
+                String result = issueBookService.update(issueBook);
+                if("Success".equals(result)) {
+                    loadIssueBook();
+                    clearFields();
+                    new Alert(Alert.AlertType.INFORMATION, "Book successfully updated..!").show();
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to update book..!").show();
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Error in update issue book..!").show();
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Please enter valid details").show();
+        }
+
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
