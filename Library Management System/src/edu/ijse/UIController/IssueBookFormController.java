@@ -60,6 +60,42 @@ public class IssueBookFormController {
         issueBookTable.setOnMouseClicked(this::selectValue);
     }
 
+    public void searchBookOnAction(ActionEvent actionEvent) {
+        try {
+
+            String bookId = txtBookId.getText();
+            BookDto book = bookService.get(bookId);
+
+            if (book == null) {
+                new Alert(Alert.AlertType.ERROR, "Book not found").show();
+                return;
+            }
+
+            if (!"yes".equalsIgnoreCase(book.getAvailable())) {
+                new Alert(Alert.AlertType.INFORMATION, "Book is not available on this time..!").show();
+                return;
+            }else {
+                txtBookDetails.setText(book.getCategoryId()+" | "+book.getTitle());
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void searchMemberOnAction(ActionEvent actionEvent) throws Exception {
+
+        String memberId = txtMemberId.getText();
+        MemberDto member = memberService.get(memberId);
+
+        if (member != null) {
+            txtMemberDetails.setText(member.getMemberName());
+        }else {
+            txtMemberDetails.setText("Member not found..!");
+        }
+
+    }
+
     public void addOnAction(ActionEvent actionEvent) {
 
         try {
@@ -72,18 +108,14 @@ public class IssueBookFormController {
                 new Alert(Alert.AlertType.ERROR, "Book not found").show();
                 return;
             } else if (!"yes".equalsIgnoreCase(book.getAvailable())) {
-                new Alert(Alert.AlertType.ERROR, "Book is not available").show();
+                new Alert(Alert.AlertType.INFORMATION, "Book is not available on this time..!").show();
                 return;
-            }else {
-                txtBookDetails.setText(book.getCategoryId()+" | "+book.getTitle());
             }
 
             MemberDto member = memberService.get(memberId);
             if (member == null) {
                 new Alert(Alert.AlertType.ERROR, "Member not found").show();
                 return;
-            }else {
-                txtMemberDetails.setText(member.getMemberName());
             }
 
             LocalDate issueDate = txtIssueDate.getValue();
@@ -104,9 +136,6 @@ public class IssueBookFormController {
                 issueBookList.add(issueBook);
                 issueBookTable.setItems(issueBookList);
                 clearFields();
-                generateIssueBookId();
-                setNewBookId();
-                setMemberId();
                 new Alert(Alert.AlertType.INFORMATION, "Book successfully added").show();
             }
 
@@ -132,9 +161,9 @@ public class IssueBookFormController {
     }
 
     private void clearFields(){
-        txtIssueId.clear();
-        txtBookId.clear();
-        txtMemberId.clear();
+        generateIssueBookId();
+        setNewBookId();
+        setMemberId();
         txtBookDetails.clear();
         txtMemberDetails.clear();
         txtIssueDate.setValue(null);
@@ -182,4 +211,5 @@ public class IssueBookFormController {
         String memberId = "M-";
         txtMemberId.setText(memberId);
     }
+
 }

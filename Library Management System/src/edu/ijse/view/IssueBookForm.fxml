@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="issueBookContext" prefHeight="620.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.UIController.IssueBookFormController">
    <children>
       <AnchorPane layoutX="76.0" layoutY="42.0" prefHeight="620.0" prefWidth="862.0" styleClass="context" stylesheets="@style/mainform.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -22,11 +21,35 @@
                   <String fx:value="shadow" />
                </styleClass>
                <children>
-                  <Label layoutX="232.0" layoutY="148.0" text="~ If you unable to return before the due date, fine will be applied." textFill="#bf5555">
+                  <Label layoutX="232.0" layoutY="5.0" text="~ If you unable to return before the due date, fine will be applied." textFill="#bf5555">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="txtMemberId" layoutX="233.0" layoutY="142.0" prefHeight="26.0" prefWidth="143.0" />
+                  <Label layoutX="233.0" layoutY="120.0" opacity="0.6" prefHeight="20.0" prefWidth="75.0" text="Member ID">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtMemberDetails" editable="false" layoutX="233.0" layoutY="173.0" prefHeight="26.0" prefWidth="298.0" />
+                  <TextField fx:id="txtBookDetails" editable="false" layoutX="232.0" layoutY="82.0" prefHeight="26.0" prefWidth="298.0" />
+                  <Button layoutX="383.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchBookOnAction" prefHeight="26.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Search">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="383.0" layoutY="140.0" mnemonicParsing="false" onAction="#searchMemberOnAction" prefHeight="26.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Search">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
             <Label layoutX="21.0" layoutY="20.0" opacity="0.71" prefHeight="20.0" prefWidth="166.0" text="Manage Issue Books">
@@ -46,14 +69,6 @@
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="txtMemberId" layoutX="245.0" layoutY="123.0" prefHeight="26.0" prefWidth="143.0" />
-            <Label layoutX="245.0" layoutY="103.0" opacity="0.6" prefHeight="20.0" prefWidth="75.0" text="Member ID">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtBookDetails" editable="false" layoutX="403.0" layoutY="66.0" prefHeight="26.0" prefWidth="298.0" />
-            <TextField fx:id="txtMemberDetails" editable="false" layoutX="404.0" layoutY="122.0" prefHeight="26.0" prefWidth="298.0" />
             <Label layoutX="24.0" layoutY="103.0" opacity="0.6" prefHeight="20.0" prefWidth="75.0" text="Issue Date">
                <font>
                   <Font name="Arial Bold" size="12.0" />
@@ -108,8 +123,8 @@
                     <columns>
                       <TableColumn fx:id="colIssueId" prefWidth="65.59997177124023" text="Issue ID" />
                       <TableColumn fx:id="colBookId" prefWidth="75.20001220703125" text="Book ID" />
-                        <TableColumn fx:id="colBookDetail" prefWidth="230.40003967285156" text="Book Details" />
-                        <TableColumn fx:id="colMemberId" prefWidth="74.39996337890625" text="Member ID" />
+                        <TableColumn fx:id="colBookDetail" prefWidth="214.40003967285156" text="Book Details" />
+                        <TableColumn fx:id="colMemberId" prefWidth="91.199951171875" text="Member ID" />
                         <TableColumn fx:id="colMemberDetail" prefWidth="167.20001220703125" text="Member Details" />
                         <TableColumn fx:id="colIssueDate" prefWidth="100.79998779296875" text="Issue Date" />
                         <TableColumn fx:id="colDueDate" prefWidth="100.80010986328125" text="Due Date" />
