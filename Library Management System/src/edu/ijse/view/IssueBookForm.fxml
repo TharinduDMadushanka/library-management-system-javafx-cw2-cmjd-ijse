@@ -34,7 +34,7 @@
                   <Font name="Arial Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="txtIssueId" editable="false" layoutX="23.0" layoutY="67.0" prefHeight="26.0" prefWidth="143.0" />
+            <TextField fx:id="txtIssueId" layoutX="23.0" layoutY="67.0" prefHeight="26.0" prefWidth="143.0" />
             <Label layoutX="23.0" layoutY="47.0" opacity="0.6" prefHeight="20.0" prefWidth="75.0" text="Issue ID">
                <font>
                   <Font name="Arial Bold" size="12.0" />

@@ -30,6 +30,7 @@ public class MainFormController {
     }
 
     public void issueBookOnAction(ActionEvent actionEvent) {
+        setContext("IssueBookForm");
     }
 
     public void returnBookOnAction(ActionEvent actionEvent) {

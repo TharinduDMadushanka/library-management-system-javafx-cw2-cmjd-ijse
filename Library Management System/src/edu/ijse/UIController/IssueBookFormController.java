@@ -1,20 +1,20 @@
 package edu.ijse.UIController;
 
+import edu.ijse.dto.BookDto;
 import edu.ijse.dto.IssueBookDto;
+import edu.ijse.dto.MemberDto;
 import edu.ijse.service.custom.impl.BookServiceImpl;
 import edu.ijse.service.custom.impl.IssueBookServiceImpl;
 import edu.ijse.service.custom.impl.MemberServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class IssueBookFormController {
@@ -52,11 +52,69 @@ public class IssueBookFormController {
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 
         loadIssueBook();
+        generateIssueBookId();
+        setNewBookId();
+        setMemberId();
+
         issueBookTable.setItems(issueBookList);
         issueBookTable.setOnMouseClicked(this::selectValue);
     }
 
     public void addOnAction(ActionEvent actionEvent) {
+
+        try {
+
+            String bookId = txtBookId.getText();
+            String memberId = txtMemberId.getText();
+
+            BookDto book = bookService.get(bookId);
+            if (book == null) {
+                new Alert(Alert.AlertType.ERROR, "Book not found").show();
+                return;
+            } else if (!"yes".equalsIgnoreCase(book.getAvailable())) {
+                new Alert(Alert.AlertType.ERROR, "Book is not available").show();
+                return;
+            }else {
+                txtBookDetails.setText(book.getCategoryId()+" | "+book.getTitle());
+            }
+
+            MemberDto member = memberService.get(memberId);
+            if (member == null) {
+                new Alert(Alert.AlertType.ERROR, "Member not found").show();
+                return;
+            }else {
+                txtMemberDetails.setText(member.getMemberName());
+            }
+
+            LocalDate issueDate = txtIssueDate.getValue();
+            LocalDate dueDate = txtDueDate.getValue();
+
+            IssueBookDto issueBook = new IssueBookDto(
+                    txtIssueId.getText(),
+                    bookId,
+                    txtBookDetails.getText(),
+                    memberId,
+                    txtMemberDetails.getText(),
+                    issueDate,
+                    dueDate
+            );
+
+            String result = issueBookService.save(issueBook);
+            if("Success".equals(result)) {
+                issueBookList.add(issueBook);
+                issueBookTable.setItems(issueBookList);
+                clearFields();
+                generateIssueBookId();
+                setNewBookId();
+                setMemberId();
+                new Alert(Alert.AlertType.INFORMATION, "Book successfully added").show();
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Error in issuing book").show();
+        }
+
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
@@ -66,6 +124,7 @@ public class IssueBookFormController {
     }
 
     public void clearOnAction(ActionEvent actionEvent) {
+        clearFields();
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
@@ -107,5 +166,20 @@ public class IssueBookFormController {
             txtIssueDate.setValue(selectedIssueBook.getIssueDate());
             txtDueDate.setValue(selectedIssueBook.getDueDate());
         }
+    }
+
+    private void generateIssueBookId() {
+        String issueBookId = "IB-";
+        txtIssueId.setText(issueBookId);
+    }
+
+    private void setNewBookId() {
+        String newBookId = "B-";
+        txtBookId.setText(newBookId);
+    }
+
+    private void setMemberId() {
+        String memberId = "M-";
+        txtMemberId.setText(memberId);
     }
 }
