@@ -7,4 +7,5 @@ import java.util.ArrayList;
 
 public interface ReturnBookService extends SuperService {
     String returnBook(ReturnBookDto returnBookDto)throws Exception;
+    ArrayList<ReturnBookDto> getAll()throws Exception;
 }

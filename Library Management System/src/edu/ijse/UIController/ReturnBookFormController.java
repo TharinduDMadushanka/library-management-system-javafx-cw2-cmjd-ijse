@@ -2,13 +2,18 @@ package edu.ijse.UIController;
 
 import edu.ijse.dto.IssueBookDto;
 import edu.ijse.dto.MemberDto;
+import edu.ijse.dto.ReturnBookDto;
 import edu.ijse.service.custom.impl.IssueBookServiceImpl;
 import edu.ijse.service.custom.impl.MemberServiceImpl;
+import edu.ijse.service.custom.impl.ReturnBookServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class ReturnBookFormController {
     public AnchorPane returnBookContext;
@@ -29,9 +34,11 @@ public class ReturnBookFormController {
     public TextField txtMemberDetails;
     public DatePicker txtReturnDate;
     public TextField txtFine;
+    public TextField returnId;
 
     private IssueBookServiceImpl issueBookService = new IssueBookServiceImpl();
     private MemberServiceImpl memberService = new MemberServiceImpl();
+    private ReturnBookServiceImpl returnBookService = new ReturnBookServiceImpl();
 
     public void searchIssueBookOnAction(ActionEvent actionEvent) throws Exception {
 
@@ -41,7 +48,7 @@ public class ReturnBookFormController {
             IssueBookDto issueBook = issueBookService.get(issueBookId);
 
             if (issueBook == null) {
-                new Alert(Alert.AlertType.INFORMATION,"Issue Book not found..!");
+                new Alert(Alert.AlertType.ERROR,"Please Enter correct Issue Book ID..!").show();
                 return;
             }
 
@@ -68,7 +75,7 @@ public class ReturnBookFormController {
             MemberDto member = memberService.get(memberId);
 
             if (member == null) {
-                new Alert(Alert.AlertType.INFORMATION,"Member not found..!");
+                new Alert(Alert.AlertType.ERROR,"Member not found..!").show();
                 return;
             }
 
@@ -87,5 +94,57 @@ public class ReturnBookFormController {
     }
 
     public void returnBookOnAction(ActionEvent actionEvent) {
+
+        try {
+            LocalDate issueDate = LocalDate.parse(txtIssueDate.getText());
+            LocalDate dueDate = LocalDate.parse(txtDueDate.getText());
+            LocalDate returnDate = txtReturnDate.getValue();
+
+            long daysBetween = ChronoUnit.DAYS.between(dueDate, returnDate);
+            double fine = 0;
+
+            if (daysBetween>0){
+                fine = daysBetween*10;
+                txtFine.setText(fine + " $");
+            }else {
+                txtFine.setText("-");
+            }
+
+            ReturnBookDto returnBook = new ReturnBookDto(
+                    returnId.getText(),
+                    txtIssueId.getText(),
+                    txtBookId.getText(),
+                    txtBookDetails.getText(),
+                    txtMemberId.getText(),
+                    txtMemberDetails.getText(),
+                    issueDate,
+                    dueDate,
+                    returnDate,
+                    txtFine.getText()
+            );
+
+            String result = returnBookService.returnBook(returnBook);
+            if (result != null) {
+                new Alert(Alert.AlertType.INFORMATION, "Book returned successfully..!").show();
+                clearFields();
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Failed to return book..!").show();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Error in returning book..!").show();
+        }
+    }
+    private void clearFields() {
+        txtIssueId.clear();
+        txtBookId.clear();
+        txtBookDetails.clear();
+        txtMemberId.clear();
+        txtMemberDetails.clear();
+        txtIssueDate.clear();
+        txtDueDate.clear();
+        txtReturnDate.setValue(null);
+        txtFine.clear();
     }
 }

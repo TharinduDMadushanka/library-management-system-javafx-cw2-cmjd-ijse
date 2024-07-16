@@ -27,7 +27,7 @@
                         <TableColumn fx:id="colBookDetail" prefWidth="152.8000030517578" text="Book Details" />
                         <TableColumn fx:id="colMemberId" prefWidth="69.5999755859375" text="Member ID" />
                         <TableColumn fx:id="colMemberDetails" prefWidth="144.00006103515625" text="Member Details" />
-                        <TableColumn fx:id="colIssueId" prefWidth="85.60003662109375" text="Issue Date" />
+                        <TableColumn fx:id="colIssueDate" prefWidth="85.60003662109375" text="Issue Date" />
                         <TableColumn fx:id="colDueDate" prefWidth="90.40008544921875" text="Due Date" />
                         <TableColumn fx:id="colReturnDate" prefWidth="87.199951171875" text="Return Date" />
                         <TableColumn fx:id="colFine" prefWidth="51.199951171875" text="Fine" />

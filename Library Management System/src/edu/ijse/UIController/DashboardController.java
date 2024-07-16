@@ -38,7 +38,7 @@ public class DashboardController implements Initializable {
     }
 
     public void returnBookOnAction(ActionEvent actionEvent) {
-        setUI("ReturnBookForm");
+        setUI("ReturnBook");
     }
 
     public void statsOnAction(ActionEvent actionEvent) {

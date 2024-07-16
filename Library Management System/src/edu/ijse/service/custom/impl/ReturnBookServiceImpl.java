@@ -9,6 +9,7 @@ import edu.ijse.entity.ReturnBookEntity;
 import edu.ijse.service.custom.ReturnBookService;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public class ReturnBookServiceImpl implements ReturnBookService {
     private IssueBookDao issueBookDao = (IssueBookDao) DaoFactory.getInstance().getDao(DaoFactory.DaoType.ISSUE_BOOKS);
@@ -57,5 +58,19 @@ public class ReturnBookServiceImpl implements ReturnBookService {
             connection.setAutoCommit(true);
         }
 
+    }
+
+    @Override
+    public ArrayList<ReturnBookDto> getAll() throws Exception {
+        ArrayList<ReturnBookEntity> returnBookEntities = returnBookDao.getAll();
+
+        if (returnBookEntities != null && !returnBookEntities.isEmpty()) {
+            ArrayList<ReturnBookDto> returnBookDtos = new ArrayList<>();
+            for (ReturnBookEntity returnBookEntity : returnBookEntities) {
+                returnBookDtos.add(new ReturnBookDto())
+            }
+            return returnBookDtos;
+        }
+        return null;
     }
 }

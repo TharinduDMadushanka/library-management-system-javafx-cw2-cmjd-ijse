@@ -34,7 +34,7 @@ public class MainFormController {
     }
 
     public void returnBookOnAction(ActionEvent actionEvent) {
-        setContext("ReturnBookForm");
+        setContext("ReturnBook");
     }
 
     public void logoutOnAction(ActionEvent actionEvent) throws IOException {
