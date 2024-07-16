@@ -34,28 +34,27 @@ public class StatisticFormController {
         colId.setCellValueFactory(new PropertyValueFactory<>("returnId"));
         colIssueID.setCellValueFactory(new PropertyValueFactory<>("issueId"));
         colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-        colBookDetail.setCellValueFactory(new PropertyValueFactory<>("bookDetail"));
+        colBookDetail.setCellValueFactory(new PropertyValueFactory<>("bookDetails"));
         colMemberId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
         colMemberDetails.setCellValueFactory(new PropertyValueFactory<>("memberDetails"));
         colIssueDate.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
-        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         colFine.setCellValueFactory(new PropertyValueFactory<>("fine"));
 
+        loadReturnBooks();
         statisticTable.setItems(returnBookList);
     }
 
-    private void loadReturnBooks(){
-
+    private void loadReturnBooks() {
         try {
-
-            ArrayList<ReturnBookDto> returnBooks = returnBookServiceImpl.
-
-        }catch (Exception e){
+            ArrayList<ReturnBookDto> returnBooks = returnBookServiceImpl.getAll();
+            if (returnBooks != null) {
+                returnBookList.setAll(returnBooks);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
-
     }
 
     public void returnBookOnAction(ActionEvent actionEvent) {

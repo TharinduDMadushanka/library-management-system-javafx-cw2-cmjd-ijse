@@ -17,39 +17,32 @@ public class ReturnBookServiceImpl implements ReturnBookService {
 
     @Override
     public String returnBook(ReturnBookDto returnBookDto) throws Exception {
-
         Connection connection = DBConnection.getInstance().getConnection();
 
         try {
-
             connection.setAutoCommit(false);
 
-            ReturnBookEntity returnBookEntity = new ReturnBookEntity(
-                    returnBookDto.getReturnId(),
-                    returnBookDto.getIssueId(),
-                    returnBookDto.getBookId(),
-                    returnBookDto.getBookDetails(),
-                    returnBookDto.getMemberId(),
-                    returnBookDto.getMemberDetails(),
-                    returnBookDto.getIssueDate(),
-                    returnBookDto.getDueDate(),
-                    returnBookDto.getReturnDate(),
-                    returnBookDto.getFine()
-            );
+            // Retrieve all return book entities for the given issueId
+            ArrayList<ReturnBookEntity> returnBooksForIssue = returnBookDao.getAll();
 
-            if (returnBookDao.create(returnBookEntity)) {
-                if (issueBookDao.delete(returnBookDto.getIssueId())) {
-                    connection.commit();
-                    return "Return Book Saved Successfully..!";
-                } else {
-                    connection.rollback();
-                    return "Return Book Saved Failed..! & Issue Book deletion failed..!";
+            if (returnBooksForIssue != null && !returnBooksForIssue.isEmpty()) {
+                // Delete return book entries first
+                for (ReturnBookEntity returnBook : returnBooksForIssue) {
+                    if (!returnBookDao.delete(returnBook.getReturnId())) {
+                        connection.rollback();
+                        return "Return Book Saved Failed..! & Return Book deletion failed..!";
+                    }
                 }
-            } else {
-                connection.rollback();
-                return "Return Book Saved Failed..!";
             }
 
+            // Now delete issue book entry
+            if (issueBookDao.delete(returnBookDto.getIssueId())) {
+                connection.commit();
+                return "Return Book Saved Successfully..!";
+            } else {
+                connection.rollback();
+                return "Return Book Saved Failed..! & Issue Book deletion failed..!";
+            }
         } catch (Exception e) {
             connection.rollback();
             e.printStackTrace();
@@ -57,7 +50,6 @@ public class ReturnBookServiceImpl implements ReturnBookService {
         } finally {
             connection.setAutoCommit(true);
         }
-
     }
 
     @Override
@@ -67,7 +59,18 @@ public class ReturnBookServiceImpl implements ReturnBookService {
         if (returnBookEntities != null && !returnBookEntities.isEmpty()) {
             ArrayList<ReturnBookDto> returnBookDtos = new ArrayList<>();
             for (ReturnBookEntity returnBookEntity : returnBookEntities) {
-                returnBookDtos.add(new ReturnBookDto())
+                returnBookDtos.add(new ReturnBookDto(
+                        returnBookEntity.getReturnId(),
+                        returnBookEntity.getIssueId(),
+                        returnBookEntity.getBookId(),
+                        returnBookEntity.getBookDetails(),
+                        returnBookEntity.getMemberId(),
+                        returnBookEntity.getMemberDetails(),
+                        returnBookEntity.getIssueDate(),
+                        returnBookEntity.getDueDate(),
+                        returnBookEntity.getReturnDate(),
+                        returnBookEntity.getFine()
+                ));
             }
             return returnBookDtos;
         }

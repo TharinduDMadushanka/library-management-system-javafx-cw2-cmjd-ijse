@@ -42,6 +42,7 @@ public class DashboardController implements Initializable {
     }
 
     public void statsOnAction(ActionEvent actionEvent) {
+        setUI("StatisticForm");
     }
 
     private void setUI(String location){

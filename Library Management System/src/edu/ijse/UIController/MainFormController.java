@@ -42,6 +42,7 @@ public class MainFormController {
     }
 
     public void statisticOnAction(ActionEvent actionEvent) {
+        setContext("StatisticForm");
     }
 
     private void setUI(String location) throws IOException {
