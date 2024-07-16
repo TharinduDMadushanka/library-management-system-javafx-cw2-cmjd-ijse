@@ -1,10 +1,7 @@
 package edu.ijse.service;
 
 import edu.ijse.service.custom.CategoryService;
-import edu.ijse.service.custom.impl.BookServiceImpl;
-import edu.ijse.service.custom.impl.CategoryServiceImpl;
-import edu.ijse.service.custom.impl.IssueBookServiceImpl;
-import edu.ijse.service.custom.impl.MemberServiceImpl;
+import edu.ijse.service.custom.impl.*;
 
 public class ServiceFactory {
     private static ServiceFactory serviceFactory;
@@ -28,6 +25,8 @@ public class ServiceFactory {
                 return new MemberServiceImpl();
             case ISSUE_BOOKS:
                 return new IssueBookServiceImpl();
+            case RETURN_BOOKS:
+                return new ReturnBookServiceImpl();
             default:
                 return null;
         }
@@ -37,6 +36,7 @@ public class ServiceFactory {
         CATEGORY,
         BOOKS,
         MEMBERS,
-        ISSUE_BOOKS
+        ISSUE_BOOKS,
+        RETURN_BOOKS
     }
 }
