@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class ReturnBookDto {
 
-    private int returnId;
+    private String returnId;
     private String issueId;
     private String bookId;
     private String bookDetails;
@@ -18,7 +18,7 @@ public class ReturnBookDto {
     public ReturnBookDto() {
     }
 
-    public ReturnBookDto(int returnId, String issueId, String bookId, String bookDetails, String memberId, String memberDetails, LocalDate issueDate, LocalDate dueDate, LocalDate returnDate, String fine) {
+    public ReturnBookDto(String returnId, String issueId, String bookId, String bookDetails, String memberId, String memberDetails, LocalDate issueDate, LocalDate dueDate, LocalDate returnDate, String fine) {
         this.returnId = returnId;
         this.issueId = issueId;
         this.bookId = bookId;
@@ -31,11 +31,11 @@ public class ReturnBookDto {
         this.fine = fine;
     }
 
-    public int getReturnId() {
+    public String getReturnId() {
         return returnId;
     }
 
-    public void setReturnId(int returnId) {
+    public void setReturnId(String returnId) {
         this.returnId = returnId;
     }
 
