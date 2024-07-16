@@ -1,10 +1,7 @@
 package edu.ijse.dao;
 
 import edu.ijse.dao.custom.CategoryDao;
-import edu.ijse.dao.custom.impl.BookDaoImpl;
-import edu.ijse.dao.custom.impl.CategoryDaoImpl;
-import edu.ijse.dao.custom.impl.IssueBookDaoImpl;
-import edu.ijse.dao.custom.impl.MemberDaoImpl;
+import edu.ijse.dao.custom.impl.*;
 
 public class DaoFactory {
     private static DaoFactory daoFactory;
@@ -28,6 +25,8 @@ public class DaoFactory {
                 return new MemberDaoImpl();
             case ISSUE_BOOKS:
                 return new IssueBookDaoImpl();
+            case RETURN_BOOKS:
+                return new ReturnBookDaoImpl();
             default:
                 return null;
         }
@@ -37,6 +36,7 @@ public class DaoFactory {
         CATEGORY,
         BOOKS,
         MEMBERS,
-        ISSUE_BOOKS
+        ISSUE_BOOKS,
+        RETURN_BOOKS
     }
 }
