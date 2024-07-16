@@ -47,8 +47,8 @@
                      </font>
                   </Label>
                   <Button layoutX="632.0" layoutY="147.0" mnemonicParsing="false" onAction="#memberOnAction" prefHeight="98.0" prefWidth="138.0" stylesheets="@style/dashboard.css" />
-                  <FontAwesomeIcon glyphName="USER" layoutX="687.0" layoutY="195.0" size="3EM" text="" />
-                  <Label layoutX="672.0" layoutY="212.0" text="Members">
+                  <FontAwesomeIcon glyphName="USER" layoutX="686.0" layoutY="190.0" size="3EM" text="" />
+                  <Label layoutX="672.0" layoutY="210.0" text="Members">
                      <font>
                         <Font name="Arial Bold" size="13.0" />
                      </font>
@@ -61,14 +61,14 @@
                      </font>
                   </Label>
                   <Button layoutX="364.0" layoutY="343.0" mnemonicParsing="false" onAction="#returnBookOnAction" prefHeight="98.0" prefWidth="138.0" stylesheets="@style/dashboard.css" />
-                  <FontAwesomeIcon glyphName="CHECK_CIRCLE" layoutX="418.0" layoutY="397.0" size="3em" />
-                  <Label layoutX="392.0" layoutY="413.0" text="Return Books">
+                  <FontAwesomeIcon glyphName="CHECK_CIRCLE" layoutX="418.0" layoutY="387.0" size="3em" />
+                  <Label layoutX="391.0" layoutY="403.0" text="Return Books">
                      <font>
                         <Font name="Arial Bold" size="13.0" />
                      </font>
                   </Label>
                   <Button layoutX="632.0" layoutY="343.0" mnemonicParsing="false" onAction="#statsOnAction" prefHeight="98.0" prefWidth="138.0" stylesheets="@style/dashboard.css" />
-                  <FontAwesomeIcon glyphName="ALIGN_LEFT" layoutX="686.0" layoutY="387.0" size="3em" />
+                  <FontAwesomeIcon glyphName="ALIGN_LEFT" layoutX="682.0" layoutY="387.0" size="3em" />
                   <Label layoutX="672.0" layoutY="403.0" text="Statistics">
                      <font>
                         <Font name="Arial Bold" size="13.0" />
