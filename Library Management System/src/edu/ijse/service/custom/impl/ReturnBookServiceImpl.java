@@ -8,6 +8,7 @@ import edu.ijse.dto.ReturnBookDto;
 import edu.ijse.entity.ReturnBookEntity;
 import edu.ijse.service.custom.ReturnBookService;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -22,27 +23,35 @@ public class ReturnBookServiceImpl implements ReturnBookService {
         try {
             connection.setAutoCommit(false);
 
-            // Retrieve all return book entities for the given issueId
-            ArrayList<ReturnBookEntity> returnBooksForIssue = returnBookDao.getAll();
+            ArrayList<ReturnBookEntity> returnBookForIssue = returnBookDao.getAll();
 
-            if (returnBooksForIssue != null && !returnBooksForIssue.isEmpty()) {
-                // Delete return book entries first
-                for (ReturnBookEntity returnBook : returnBooksForIssue) {
-                    if (!returnBookDao.delete(returnBook.getReturnId())) {
-                        connection.rollback();
-                        return "Return Book Saved Failed..! & Return Book deletion failed..!";
-                    }
-                }
+            ReturnBookEntity returnBookEntity = new ReturnBookEntity(
+                    returnBookDto.getReturnId(),
+                    returnBookDto.getIssueId(),
+                    returnBookDto.getBookId(),
+                    returnBookDto.getBookDetails(),
+                    returnBookDto.getMemberId(),
+                    returnBookDto.getMemberDetails(),
+                    returnBookDto.getIssueDate(),
+                    returnBookDto.getDueDate(),
+                    returnBookDto.getReturnDate(),
+                    returnBookDto.getFine()
+            );
+
+            if (!returnBookDao.create(returnBookEntity)) {
+                connection.rollback();
+                return "Return Book saved Failed..!";
             }
 
             // Now delete issue book entry
-            if (issueBookDao.delete(returnBookDto.getIssueId())) {
-                connection.commit();
-                return "Return Book Saved Successfully..!";
-            } else {
-                connection.rollback();
-                return "Return Book Saved Failed..! & Issue Book deletion failed..!";
-            }
+//            if (issueBookDao.delete(returnBookDto.getIssueId())) {
+//                connection.commit();
+//                return "Return Book Saved Successfully..!";
+//            } else {
+//                connection.rollback();
+//                return "Return Book Saved Failed..! & Issue Book deletion failed..!";
+//            }
+
         } catch (Exception e) {
             connection.rollback();
             e.printStackTrace();
@@ -50,6 +59,7 @@ public class ReturnBookServiceImpl implements ReturnBookService {
         } finally {
             connection.setAutoCommit(true);
         }
+        return "Return Book Successfully..!";
     }
 
     @Override

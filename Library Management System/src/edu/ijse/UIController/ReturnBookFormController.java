@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.UUID;
 
 public class ReturnBookFormController {
     public AnchorPane returnBookContext;
@@ -35,6 +36,7 @@ public class ReturnBookFormController {
     public DatePicker txtReturnDate;
     public TextField txtFine;
     public TextField returnId;
+    public TextField txtReturnId;
 
     private IssueBookServiceImpl issueBookService = new IssueBookServiceImpl();
     private MemberServiceImpl memberService = new MemberServiceImpl();
@@ -110,8 +112,13 @@ public class ReturnBookFormController {
                 txtFine.setText("-");
             }
 
+            String returnId = txtReturnId.getText(); // Assuming txtReturnId is the TextField for returnId
+            if (returnId == null || returnId.trim().isEmpty()) {
+                returnId = generateNewReturnId(); // Generate a new returnId if it's not provided
+            }
+
             ReturnBookDto returnBook = new ReturnBookDto(
-                    returnId.getText(),
+                    returnId,
                     txtIssueId.getText(),
                     txtBookId.getText(),
                     txtBookDetails.getText(),
@@ -146,5 +153,10 @@ public class ReturnBookFormController {
         txtDueDate.clear();
         txtReturnDate.setValue(null);
         txtFine.clear();
+    }
+    private String generateNewReturnId() {
+        // Logic to generate a new returnId
+        // This could be based on a sequence, UUID, or any other logic you prefer
+        return UUID.randomUUID().toString(); // Example using UUID
     }
 }
