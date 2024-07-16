@@ -23,5 +23,6 @@ public class StatisticFormController {
     }
 
     public void dashboardOnAction(ActionEvent actionEvent) {
+
     }
 }
