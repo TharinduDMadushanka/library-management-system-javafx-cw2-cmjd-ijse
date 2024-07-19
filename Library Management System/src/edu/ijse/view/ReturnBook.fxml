@@ -37,7 +37,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <TextField fx:id="txtReturnId" editable="false" layoutX="356.0" layoutY="14.0" prefHeight="26.0" prefWidth="34.0" />
+                  <TextField fx:id="txtReturnId" layoutX="356.0" layoutY="14.0" prefHeight="26.0" prefWidth="34.0" />
                   <Label layoutX="330.0" layoutY="19.0" text="ID :" />
                </children>
             </AnchorPane>

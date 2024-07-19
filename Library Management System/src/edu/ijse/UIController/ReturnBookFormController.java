@@ -47,11 +47,7 @@ public class ReturnBookFormController {
     private MemberServiceImpl memberService = new MemberServiceImpl();
     private ReturnBookServiceImpl returnBookService = new ReturnBookServiceImpl();
 
-    private static int lastReturnId = 3;
-
-    public void initialize() {
-        generateNewReturnId();
-    }
+    private static int lastReturnId = 0;
 
     public void searchIssueBookOnAction(ActionEvent actionEvent) throws Exception {
 
@@ -165,28 +161,9 @@ public class ReturnBookFormController {
         txtReturnDate.setValue(null);
         txtFine.clear();
     }
-
     private String generateNewReturnId() {
-        // Get the current return ID from the text field
-        String currentReturnId = txtReturnId.getText();
-
-        int newReturnIdInt;
-
-        if (currentReturnId != null && !currentReturnId.trim().isEmpty()) {
-            // Parse the current return ID to an integer
-            int currentReturnIdInt = Integer.parseInt(currentReturnId);
-
-            // Increment the current return ID by 1 to get the new return ID
-            newReturnIdInt = currentReturnIdInt + 1;
-        } else {
-            // If no return ID exists, start with 1
-            newReturnIdInt = 3;
-        }
-
-        // Convert the new return ID to a string and set it in the text field
-        String newReturnId = String.valueOf(newReturnIdInt);
-        txtReturnId.setText(newReturnId);
-
-        return newReturnId;
+        // Logic to generate a new returnId
+        // This could be based on a sequence, UUID, or any other logic you prefer
+        return UUID.randomUUID().toString(); // Example using UUID
     }
 }
