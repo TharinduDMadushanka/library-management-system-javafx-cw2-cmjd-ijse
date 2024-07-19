@@ -1,5 +1,6 @@
 package edu.ijse.UIController;
 
+import edu.ijse.db.DBConnection;
 import edu.ijse.dto.IssueBookDto;
 import edu.ijse.dto.MemberDto;
 import edu.ijse.dto.ReturnBookDto;
@@ -12,6 +13,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
@@ -41,6 +46,12 @@ public class ReturnBookFormController {
     private IssueBookServiceImpl issueBookService = new IssueBookServiceImpl();
     private MemberServiceImpl memberService = new MemberServiceImpl();
     private ReturnBookServiceImpl returnBookService = new ReturnBookServiceImpl();
+
+    private static int lastReturnId = 3;
+
+    public void initialize() {
+        generateNewReturnId();
+    }
 
     public void searchIssueBookOnAction(ActionEvent actionEvent) throws Exception {
 
@@ -154,9 +165,28 @@ public class ReturnBookFormController {
         txtReturnDate.setValue(null);
         txtFine.clear();
     }
+
     private String generateNewReturnId() {
-        // Logic to generate a new returnId
-        // This could be based on a sequence, UUID, or any other logic you prefer
-        return UUID.randomUUID().toString(); // Example using UUID
+        // Get the current return ID from the text field
+        String currentReturnId = txtReturnId.getText();
+
+        int newReturnIdInt;
+
+        if (currentReturnId != null && !currentReturnId.trim().isEmpty()) {
+            // Parse the current return ID to an integer
+            int currentReturnIdInt = Integer.parseInt(currentReturnId);
+
+            // Increment the current return ID by 1 to get the new return ID
+            newReturnIdInt = currentReturnIdInt + 1;
+        } else {
+            // If no return ID exists, start with 1
+            newReturnIdInt = 3;
+        }
+
+        // Convert the new return ID to a string and set it in the text field
+        String newReturnId = String.valueOf(newReturnIdInt);
+        txtReturnId.setText(newReturnId);
+
+        return newReturnId;
     }
 }
