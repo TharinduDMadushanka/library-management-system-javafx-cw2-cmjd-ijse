@@ -5,6 +5,7 @@ import edu.ijse.service.custom.impl.ReturnBookServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -58,11 +59,19 @@ public class StatisticFormController {
     }
 
     public void returnBookOnAction(ActionEvent actionEvent) {
-
-
+        setContext("ReturnBook");
     }
 
     public void dashboardOnAction(ActionEvent actionEvent) {
+        setContext("Dashboard");
+    }
 
+    private void setContext(String location){
+        try {
+            statisticContext.getChildren().clear();
+            statisticContext.getChildren().add(FXMLLoader.load(getClass().getResource("/edu/ijse/view/" + location + ".fxml")));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -33,9 +33,9 @@
                         <TableColumn fx:id="colFine" prefWidth="51.199951171875" text="Fine" />
                     </columns>
                   </TableView>
-                  <Button layoutX="15.0" layoutY="521.0" mnemonicParsing="false" onAction="#returnBookOnAction" prefHeight="35.0" prefWidth="127.0" text="Return Book" />
-                  <FontAwesomeIcon glyphName="ARROW_LEFT" layoutX="28.0" layoutY="543.0" />
-                  <Button layoutX="691.0" layoutY="521.0" mnemonicParsing="false" onAction="#dashboardOnAction" prefHeight="35.0" prefWidth="127.0" text="Dashboard" />
+                  <Button layoutX="15.0" layoutY="521.0" mnemonicParsing="false" onAction="#returnBookOnAction" prefHeight="35.0" prefWidth="155.0" styleClass="nav-btn" stylesheets="@style/mainform.css" text="    Return Book" />
+                  <FontAwesomeIcon glyphName="ARROW_LEFT" layoutX="22.0" layoutY="542.0" />
+                  <Button layoutX="691.0" layoutY="521.0" mnemonicParsing="false" onAction="#dashboardOnAction" prefHeight="35.0" prefWidth="127.0" styleClass="nav-btn" stylesheets="@style/mainform.css" text="Dashboard" />
                </children>
             </AnchorPane>
             <Label layoutX="26.0" layoutY="25.0" opacity="0.71" prefHeight="18.0" prefWidth="174.0" text="Borrowing Statistic">
