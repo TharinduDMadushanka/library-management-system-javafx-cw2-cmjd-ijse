@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class SignupFormController {
     public AnchorPane signupContext;
@@ -25,6 +26,17 @@ public class SignupFormController {
         String password = txtPassword.getText();
         String email = txtEmail.getText();
         String username = txtUsername.getText();
+
+        boolean checkEmail = isValidEmail(txtEmail.getText());
+
+        if (!name.matches("^[^0-9]*$")){ // String validation
+            new Alert(Alert.AlertType.ERROR, "Name can't be a number..!", ButtonType.OK).show();
+            return;
+        }else if (!checkEmail){
+            new Alert(Alert.AlertType.ERROR,"Please enter a valid email address.",ButtonType.OK).show();
+            return;
+        }
+
 
         if(name.isEmpty() || password.isEmpty() || email.isEmpty() || username.isEmpty()){
            new Alert(Alert.AlertType.ERROR, "Please fill all the fields", ButtonType.OK).show();
@@ -47,5 +59,11 @@ public class SignupFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/edu/ijse/view/" + location + ".fxml"))));
         stage.show();
         stage.centerOnScreen();
+    }
+
+    private static boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern emailPattern = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
+        return emailPattern.matcher(email).matches();
     }
 }

@@ -16,7 +16,7 @@
             <AnchorPane prefHeight="620.0" prefWidth="218.0" styleClass="left-form" stylesheets="@style/mainform.css" BorderPane.alignment="CENTER">
                <children>
                   <FontAwesomeIcon fill="#262626" glyphName="USER" layoutX="96.0" layoutY="66.0" size="3em" text="" wrappingWidth="28.685707092285156" />
-                  <Label layoutX="39.0" layoutY="83.0" prefHeight="27.0" prefWidth="147.0" text="Welcome Admin" textFill="#262626">
+                  <Label fx:id="txtTitle" layoutX="39.0" layoutY="83.0" prefHeight="27.0" prefWidth="147.0" text="Welcome Admin" textFill="#262626">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

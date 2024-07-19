@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -12,9 +13,11 @@ import java.io.IOException;
 public class MainFormController {
     public AnchorPane mainContext;
     public Button btnLogOut;
+    public Label txtTitle;
 
     public void initialize() {
         setContext("Dashboard");
+        //setTitle();
     }
 
     public void bookCategoryOnAction(ActionEvent actionEvent) {
@@ -62,4 +65,9 @@ public class MainFormController {
         }
     }
 
+//    private void setTitle(String title){
+//
+//        String titleName = "Welcome"+title;
+//        txtTitle.setText(titleName);
+//    }
 }
