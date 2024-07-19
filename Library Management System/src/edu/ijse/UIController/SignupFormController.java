@@ -26,11 +26,15 @@ public class SignupFormController {
         String email = txtEmail.getText();
         String username = txtUsername.getText();
 
-        DBConnection.userTable.add(
-                new Admin(name,password,email,username)
-        );
-        new Alert(Alert.AlertType.INFORMATION,"Your Account has been successfully registered!").showAndWait();
-        setUI("LoginForm");
+        if(name.isEmpty() || password.isEmpty() || email.isEmpty() || username.isEmpty()){
+           new Alert(Alert.AlertType.ERROR, "Please fill all the fields", ButtonType.OK).show();
+        }else {
+            DBConnection.userTable.add(
+                    new Admin(name,password,email,username)
+            );
+            new Alert(Alert.AlertType.INFORMATION,"Your Account has been successfully registered!").showAndWait();
+            setUI("LoginForm");
+        }
 
     }
 
