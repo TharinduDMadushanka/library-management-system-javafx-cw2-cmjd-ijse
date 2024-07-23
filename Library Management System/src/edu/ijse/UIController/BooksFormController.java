@@ -17,6 +17,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 public class BooksFormController {
     public AnchorPane bookContext;
@@ -89,6 +90,9 @@ public class BooksFormController {
             } else if (txtTitle.getText().trim().isEmpty() || txtAuthor.getText().trim().isEmpty() || txtYear.getValue() == null) {
                 new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
                 return;
+            } else if (!txtAuthor.getText().matches("^[^0-9]*$")) {
+                new Alert(Alert.AlertType.ERROR, "Author name can't be a number..!", ButtonType.OK).show();
+                return;
             }
 
             if (category == null) {
@@ -124,7 +128,7 @@ public class BooksFormController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Error in add book..!").show();
+            new Alert(Alert.AlertType.ERROR, "Error in add book.Please check ID numbers..!").show();
         }
     }
 
@@ -133,6 +137,17 @@ public class BooksFormController {
         try {
             String categoryId = txtCategoryId.getText();
             CategoryDto category = categoryService.get(categoryId);
+
+            if (txtCategoryId.getText().equalsIgnoreCase("BC-") || txtBookId.getText().equalsIgnoreCase("B-")) {
+                new Alert(Alert.AlertType.ERROR, "Please Enter Category ID or Book ID..!").show();
+                return;
+            } else if (txtTitle.getText().trim().isEmpty() || txtAuthor.getText().trim().isEmpty() || txtYear.getValue() == null) {
+                new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
+                return;
+            } else if (!txtAuthor.getText().matches("^[^0-9]*$")) {
+                new Alert(Alert.AlertType.ERROR, "Author name can't be a number..!", ButtonType.OK).show();
+                return;
+            }
 
             if (category == null) {
                 new Alert(Alert.AlertType.ERROR, "Category does not exist", ButtonType.OK).showAndWait();
@@ -176,9 +191,18 @@ public class BooksFormController {
 
             String result =bookService.delete(txtBookId.getText());
             if ("Success".equals(result)) {
-                loadBook();
-                clearFields();
-                new Alert(Alert.AlertType.INFORMATION, "Book Deleted Successfully").showAndWait();
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this book?...!",
+                        ButtonType.YES,ButtonType.NO);
+
+                Optional<ButtonType> buttonType = alert.showAndWait();
+
+                if (buttonType.get() == ButtonType.YES) {
+                    loadBook();
+                    clearFields();
+                    new Alert(Alert.AlertType.INFORMATION, "Book Deleted Successfully").showAndWait();
+                }
+
             }else {
                 new Alert(Alert.AlertType.ERROR, "Failed to delete book").show();
             }
