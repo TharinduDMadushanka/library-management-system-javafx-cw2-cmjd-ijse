@@ -81,49 +81,41 @@ public class BooksFormController {
 
     public void addOnAction(ActionEvent actionEvent) {
         try {
-            String categoryId = txtCategoryId.getText();
-            CategoryDto category = categoryService.get(categoryId);
 
-            if (txtCategoryId.getText().equalsIgnoreCase("BC-") || txtBookId.getText().equalsIgnoreCase("B-")) {
-                new Alert(Alert.AlertType.ERROR, "Please Enter Category ID or Book ID..!").show();
-                return;
-            } else if (txtTitle.getText().trim().isEmpty() || txtAuthor.getText().trim().isEmpty() || txtYear.getValue() == null) {
-                new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
-                return;
-            } else if (!txtAuthor.getText().matches("^[^0-9]*$")) {
-                new Alert(Alert.AlertType.ERROR, "Author name can't be a number..!", ButtonType.OK).show();
-                return;
-            }
+            if (validate()){
+                String categoryId = txtCategoryId.getText();
+                CategoryDto category = categoryService.get(categoryId);
 
-            if (category == null) {
-                new Alert(Alert.AlertType.ERROR, "Category does not exist", ButtonType.OK).showAndWait();
-                return;
-            }
+                if (category == null) {
+                    new Alert(Alert.AlertType.ERROR, "Category does not exist", ButtonType.OK).showAndWait();
+                    return;
+                }
 
-            // Proceed with book addition
-            LocalDate localDate = txtYear.getValue();
-            String availability = txtYes.isSelected() ? "yes" : "no";
+                // Proceed with book addition
+                LocalDate localDate = txtYear.getValue();
+                String availability = txtYes.isSelected() ? "yes" : "no";
 
-            BookDto book = new BookDto(
-                    categoryId,
-                    txtBookId.getText(),
-                    txtTitle.getText(),
-                    txtAuthor.getText(),
-                    localDate,
-                    availability
-            );
+                BookDto book = new BookDto(
+                        categoryId,
+                        txtBookId.getText(),
+                        txtTitle.getText(),
+                        txtAuthor.getText(),
+                        localDate,
+                        availability
+                );
 
-            String result = bookService.save(book);
+                String result = bookService.save(book);
 
-            if ("Success".equals(result)) {
-                bookList.add(book);
-                bookTable.setItems(bookList);
-                clearFields();
-                setNewCategoryId();
-                setNewBookId();
-                new Alert(Alert.AlertType.INFORMATION, "Book Added Successfully").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to add book").show();
+                if ("Success".equals(result)) {
+                    bookList.add(book);
+                    bookTable.setItems(bookList);
+                    clearFields();
+                    setNewCategoryId();
+                    setNewBookId();
+                    new Alert(Alert.AlertType.INFORMATION, "Book Added Successfully").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to add book").show();
+                }
             }
 
         } catch (Exception e) {
@@ -135,48 +127,51 @@ public class BooksFormController {
 
     public void updateOnAction(ActionEvent actionEvent) {
         try {
-            String categoryId = txtCategoryId.getText();
-            CategoryDto category = categoryService.get(categoryId);
 
-            if (txtCategoryId.getText().equalsIgnoreCase("BC-") || txtBookId.getText().equalsIgnoreCase("B-")) {
-                new Alert(Alert.AlertType.ERROR, "Please Enter Category ID or Book ID..!").show();
-                return;
-            } else if (txtTitle.getText().trim().isEmpty() || txtAuthor.getText().trim().isEmpty() || txtYear.getValue() == null) {
-                new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
-                return;
-            } else if (!txtAuthor.getText().matches("^[^0-9]*$")) {
-                new Alert(Alert.AlertType.ERROR, "Author name can't be a number..!", ButtonType.OK).show();
-                return;
-            }
+            if (validate()){
+                String categoryId = txtCategoryId.getText();
+                CategoryDto category = categoryService.get(categoryId);
 
-            if (category == null) {
-                new Alert(Alert.AlertType.ERROR, "Category does not exist", ButtonType.OK).showAndWait();
-                return;
-            }
+                if (txtCategoryId.getText().equalsIgnoreCase("BC-") || txtBookId.getText().equalsIgnoreCase("B-")) {
+                    new Alert(Alert.AlertType.ERROR, "Please Enter Category ID or Book ID..!").show();
+                    return;
+                } else if (txtTitle.getText().trim().isEmpty() || txtAuthor.getText().trim().isEmpty() || txtYear.getValue() == null) {
+                    new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
+                    return;
+                } else if (!txtAuthor.getText().matches("^[^0-9]*$")) {
+                    new Alert(Alert.AlertType.ERROR, "Author name can't be a number..!", ButtonType.OK).show();
+                    return;
+                }
 
-            // Proceed with book addition
-            LocalDate localDate = txtYear.getValue();
-            String availability = txtYes.isSelected() ? "yes" : "no";
+                if (category == null) {
+                    new Alert(Alert.AlertType.ERROR, "Category does not exist", ButtonType.OK).showAndWait();
+                    return;
+                }
 
-            BookDto book = new BookDto(
-                    categoryId,
-                    txtBookId.getText(),
-                    txtTitle.getText(),
-                    txtAuthor.getText(),
-                    localDate,
-                    availability
-            );
+                // Proceed with book addition
+                LocalDate localDate = txtYear.getValue();
+                String availability = txtYes.isSelected() ? "yes" : "no";
 
-            String result = bookService.update(book);
+                BookDto book = new BookDto(
+                        categoryId,
+                        txtBookId.getText(),
+                        txtTitle.getText(),
+                        txtAuthor.getText(),
+                        localDate,
+                        availability
+                );
 
-            if ("Success".equals(result)) {
-                loadBook();
-                clearFields();
-                setNewCategoryId();
-                setNewBookId();
-                new Alert(Alert.AlertType.INFORMATION, "Book Updated Successfully").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to update book").show();
+                String result = bookService.update(book);
+
+                if ("Success".equals(result)) {
+                    loadBook();
+                    clearFields();
+                    setNewCategoryId();
+                    setNewBookId();
+                    new Alert(Alert.AlertType.INFORMATION, "Book Updated Successfully").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to update book").show();
+                }
             }
 
         } catch (Exception e) {
@@ -292,5 +287,19 @@ public class BooksFormController {
     private void setNewBookId() {
         String newBookId = "B-";
         txtBookId.setText(newBookId);
+    }
+
+    public boolean validate (){
+        if (txtCategoryId.getText().equalsIgnoreCase("BC-") || txtBookId.getText().equalsIgnoreCase("B-")) {
+            new Alert(Alert.AlertType.WARNING, "Please Enter Category ID or Book ID..!").show();
+            return false;
+        } else if (txtTitle.getText().trim().isEmpty() || txtAuthor.getText().trim().isEmpty() || txtYear.getValue() == null) {
+            new Alert(Alert.AlertType.WARNING, "Please complete all details..!").show();
+            return false;
+        } else if (!txtAuthor.getText().matches("^[^0-9]*$")) {
+            new Alert(Alert.AlertType.WARNING, "Author name can't be a number..!", ButtonType.OK).show();
+            return false;
+        }
+        return true;
     }
 }
