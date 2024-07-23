@@ -6,6 +6,7 @@ import edu.ijse.service.custom.impl.MemberServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -13,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class MemberFormController {
     public AnchorPane memberContext;
@@ -32,7 +32,14 @@ public class MemberFormController {
     public TableColumn<MemberDto, String> colId;
     public TableColumn<MemberDto, String> colName;
     public TableColumn<MemberDto, String> colAddress;
-    public TableColumn<MemberDto, String> colMobile;
+
+//    @FXML
+//    public TableColumn<MemberDto, String> colMobile;
+
+
+    @FXML
+    private TableColumn<MemberDto, String> colMobile;
+
     public TableColumn<MemberDto, String> colEmail;
     public TableColumn<MemberDto, String> colDob;
     public TableColumn<MemberDto, String> colAge;
@@ -70,44 +77,20 @@ public class MemberFormController {
 
     public void addOnAction(ActionEvent actionEvent) {
 
+        LocalDate dob = txtDob.getValue();
+
+        MemberDto member = new MemberDto(
+                txtId.getText(),
+                txtName.getText(),
+                txtAddress.getText(),
+                txtMobile.getText(),
+                txtEmail.getText(),
+                Integer.parseInt(txtAge.getText()),
+                dob,
+                txtGender.getText()
+        );
+
         try {
-
-            boolean checkEmail = isValidEmail(txtEmail.getText());
-
-            if (txtId.getText().equalsIgnoreCase("M-")) {
-                new Alert(Alert.AlertType.WARNING, "Please enter a valid ID number..!").show();
-                return;
-            } else if (txtName.getText().trim().isEmpty() || txtAddress.getText().trim().isEmpty() || txtMobile.getText().trim().isEmpty()
-            || txtMobile.getText().trim().isEmpty() || txtAge.getText().trim().isEmpty()) {
-                new Alert(Alert.AlertType.WARNING, "Please complete all details..!").show();
-                return;
-            } else if (!checkEmail) {
-                new Alert(Alert.AlertType.WARNING,"Please enter a valid email address.").show();
-                return;
-            } else if (!txtName.getText().matches("^[^0-9]*$")) {
-                new Alert(Alert.AlertType.WARNING, "Member name can't be a number..!").show();
-                return;
-            } else if (!txtMobile.getText().matches("^0[7][01245678][0-9]{7}$")) {
-                new Alert(Alert.AlertType.WARNING,"Please enter a valid mobile number.").show();
-                return;
-            } else if (!txtAge.getText().matches("^[0-9]+$")) {
-                new Alert(Alert.AlertType.WARNING, "Please enter valid age..!..!").show();
-                return;
-            }
-
-            LocalDate dob = txtDob.getValue();
-
-            MemberDto member = new MemberDto(
-                    txtId.getText(),
-                    txtName.getText(),
-                    txtAddress.getText(),
-                    txtMobile.getText(),
-                    txtEmail.getText(),
-                    Integer.parseInt(txtAge.getText()),
-                    dob,
-                    txtGender.getText()
-            );
-
 
             String result = memberService.save(member);
             if ("Success".equals(result)) {
@@ -120,7 +103,7 @@ public class MemberFormController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Member save failed.Please check again details..!").show();
+            new Alert(Alert.AlertType.INFORMATION, "Member save failed..!").show();
         }
 
     }
@@ -213,6 +196,9 @@ public class MemberFormController {
             ArrayList<MemberDto> members = memberService.getAll();
             if (members != null) {
                 memberList.setAll(members);
+//                memberList.stream().forEach(memberDto -> {
+//                    System.out.println(memberDto.getMobile());
+//                });
                 memberTable.setItems(memberList);
             }
 
@@ -250,11 +236,5 @@ public class MemberFormController {
     private void setMemberId() {
         String memberId = "M-";
         txtId.setText(memberId);
-    }
-
-    private static boolean isValidEmail(String email) {
-        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-        Pattern emailPattern = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
-        return emailPattern.matcher(email).matches();
     }
 }

@@ -7,7 +7,7 @@ public class MemberEntity {
     private String memberId;
     private String memberName;
     private String address;
-    private String mobile;
+    private String mobileNumber;
     private String email;
     private int age;
     private LocalDate dob;
@@ -20,10 +20,20 @@ public class MemberEntity {
         this.memberId = memberId;
         this.memberName = memberName;
         this.address = address;
-        this.mobile = mobile;
+        this.mobileNumber = mobile;
         this.email = email;
         this.age = age;
         this.dob = dob;
+        this.gender = gender;
+    }
+
+    public MemberEntity(String memberId, String memberName, String address, String mobileNumber, String email, int age, String gender) {
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.address = address;
+        this.mobileNumber = mobileNumber;
+        this.email = email;
+        this.age = age;
         this.gender = gender;
     }
 
@@ -52,11 +62,11 @@ public class MemberEntity {
     }
 
     public String getMobile() {
-        return mobile;
+        return mobileNumber;
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile;
+        this.mobileNumber = mobile;
     }
 
     public String getEmail() {
@@ -97,7 +107,7 @@ public class MemberEntity {
                 "memberId='" + memberId + '\'' +
                 ", memberName='" + memberName + '\'' +
                 ", address='" + address + '\'' +
-                ", mobile='" + mobile + '\'' +
+                ", mobile='" + mobileNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", dob=" + dob +

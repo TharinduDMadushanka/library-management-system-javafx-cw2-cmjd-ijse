@@ -50,6 +50,8 @@ public class MemberDaoImpl implements MemberDao {
         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM members");
 
         while(rst.next()){
+//            System.out.println(rst.getString("mobileNumber"));
+
             MemberEntity memberEntity = new MemberEntity(
                     rst.getString("memberId"),
                     rst.getString("memberName"),

@@ -45,6 +45,7 @@ public class MemberServiceImpl implements MemberService {
         if (entities != null && !entities.isEmpty()) {
             ArrayList<MemberDto> memberDtos = new ArrayList<>();
             for (MemberEntity entity : entities) {
+//                System.out.println(entity.getMobile());
                 memberDtos.add(getMemberDto(entity));
             }
             return memberDtos;
