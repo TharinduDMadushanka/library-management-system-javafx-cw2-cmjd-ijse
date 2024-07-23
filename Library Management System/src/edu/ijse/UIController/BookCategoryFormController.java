@@ -5,15 +5,13 @@ import edu.ijse.service.custom.impl.CategoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class BookCategoryFormController {
     public AnchorPane categoryContext;
@@ -40,8 +38,11 @@ public class BookCategoryFormController {
 
     public void addOnAction(ActionEvent actionEvent) {
 
-        if (txtName.getText().trim().isEmpty()) {
-            new Alert(Alert.AlertType.INFORMATION, "Please Enter Category name..!").show();
+        if (txtName.getText().trim().isEmpty() || txtId.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
+            return;
+        }else if (txtId.getText().equalsIgnoreCase("BC-")){
+            new Alert(Alert.AlertType.ERROR, "Please Enter Category ID..!").show();
             return;
         }
 
@@ -62,14 +63,17 @@ public class BookCategoryFormController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.INFORMATION, "Error in save..!").show();
+            new Alert(Alert.AlertType.INFORMATION, "Error in save. Please enter valid ID number...!").show();
         }
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
 
-        if (txtName.getText().trim().isEmpty()) {
-            new Alert(Alert.AlertType.INFORMATION, "Please Enter Category name..!").show();
+        if (txtName.getText().trim().isEmpty() || txtId.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
+            return;
+        }else if (txtId.getText().equalsIgnoreCase("BC-")){
+            new Alert(Alert.AlertType.ERROR, "Please Enter Category ID..!").show();
             return;
         }
 
@@ -99,9 +103,17 @@ public class BookCategoryFormController {
         try {
             String result = categoryService.delete(txtId.getText());
             if("Success".equals(result)) {
-                loadCategory();
-                clearField();
-                setNewCategoryId();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this category?...!",
+                        ButtonType.YES,ButtonType.NO);
+
+                Optional<ButtonType> buttonType = alert.showAndWait();
+
+                if (buttonType.get() == ButtonType.YES) {
+                    loadCategory();
+                    clearField();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Category has been Deleted!").show();
+                    setNewCategoryId();
+                }
             }
         }catch (Exception e) {
             e.printStackTrace();

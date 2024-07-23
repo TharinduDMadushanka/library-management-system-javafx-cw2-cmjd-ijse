@@ -83,6 +83,14 @@ public class BooksFormController {
             String categoryId = txtCategoryId.getText();
             CategoryDto category = categoryService.get(categoryId);
 
+            if (txtCategoryId.getText().equalsIgnoreCase("BC-") || txtBookId.getText().equalsIgnoreCase("B-")) {
+                new Alert(Alert.AlertType.ERROR, "Please Enter Category ID or Book ID..!").show();
+                return;
+            } else if (txtTitle.getText().trim().isEmpty() || txtAuthor.getText().trim().isEmpty() || txtYear.getValue() == null) {
+                new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
+                return;
+            }
+
             if (category == null) {
                 new Alert(Alert.AlertType.ERROR, "Category does not exist", ButtonType.OK).showAndWait();
                 return;
