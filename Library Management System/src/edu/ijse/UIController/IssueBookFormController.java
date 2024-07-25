@@ -67,7 +67,7 @@ public class IssueBookFormController {
             BookDto book = bookService.get(bookId);
 
             if (book == null) {
-                new Alert(Alert.AlertType.ERROR, "Book not found").show();
+                new Alert(Alert.AlertType.WARNING, "Book not found").show();
                 return;
             }
 
@@ -101,37 +101,41 @@ public class IssueBookFormController {
         if(!txtMemberDetails.getText().equalsIgnoreCase("Member not found..!")) {
             try {
 
-                String bookId = txtBookId.getText();
-                String memberId = txtMemberId.getText();
+                if (isValidField()){
 
-                LocalDate issueDate = txtIssueDate.getValue();
-                LocalDate dueDate = txtDueDate.getValue();
+                    String bookId = txtBookId.getText();
+                    String memberId = txtMemberId.getText();
 
-                IssueBookDto issueBook = new IssueBookDto(
-                        txtIssueId.getText(),
-                        txtBookId.getText(),
-                        txtBookDetails.getText(),
-                        memberId,
-                        txtMemberDetails.getText(),
-                        issueDate,
-                        dueDate
-                );
+                    LocalDate issueDate = txtIssueDate.getValue();
+                    LocalDate dueDate = txtDueDate.getValue();
 
-                String result = issueBookService.save(issueBook);
-                if("Success".equals(result)) {
+                    IssueBookDto issueBook = new IssueBookDto(
+                            txtIssueId.getText(),
+                            txtBookId.getText(),
+                            txtBookDetails.getText(),
+                            memberId,
+                            txtMemberDetails.getText(),
+                            issueDate,
+                            dueDate
+                    );
 
-                    BookDto book = bookService.get(bookId);
-                    if(book != null && "yes".equalsIgnoreCase(book.getAvailable())) {
-                        book.setAvailable("no");
-                        bookService.update(book);
+                    String result = issueBookService.save(issueBook);
+                    if("Success".equals(result)) {
+
+                        BookDto book = bookService.get(bookId);
+                        if(book != null && "yes".equalsIgnoreCase(book.getAvailable())) {
+                            book.setAvailable("no");
+                            bookService.update(book);
+                        }
+
+                        issueBookList.add(issueBook);
+                        issueBookTable.setItems(issueBookList);
+                        clearFields();
+                        new Alert(Alert.AlertType.INFORMATION, "Book successfully added").show();
+                    }else {
+                        new Alert(Alert.AlertType.ERROR, "Failed to add book..!").show();
                     }
 
-                    issueBookList.add(issueBook);
-                    issueBookTable.setItems(issueBookList);
-                    clearFields();
-                    new Alert(Alert.AlertType.INFORMATION, "Book successfully added").show();
-                }else {
-                    new Alert(Alert.AlertType.ERROR, "Failed to add book..!").show();
                 }
 
             }catch (Exception e) {
@@ -149,29 +153,33 @@ public class IssueBookFormController {
         if(!txtMemberDetails.getText().equalsIgnoreCase("Member not found..!")) {
             try {
 
-                String bookId = txtBookId.getText();
-                String memberId = txtMemberId.getText();
+                if (isValidField()){
 
-                LocalDate issueDate = txtIssueDate.getValue();
-                LocalDate dueDate = txtDueDate.getValue();
+                    String bookId = txtBookId.getText();
+                    String memberId = txtMemberId.getText();
 
-                IssueBookDto issueBook = new IssueBookDto(
-                        txtIssueId.getText(),
-                        bookId,
-                        txtBookDetails.getText(),
-                        memberId,
-                        txtMemberDetails.getText(),
-                        issueDate,
-                        dueDate
-                );
+                    LocalDate issueDate = txtIssueDate.getValue();
+                    LocalDate dueDate = txtDueDate.getValue();
 
-                String result = issueBookService.update(issueBook);
-                if("Success".equals(result)) {
-                    loadIssueBook();
-                    clearFields();
-                    new Alert(Alert.AlertType.INFORMATION, "Book successfully updated..!").show();
-                }else {
-                    new Alert(Alert.AlertType.ERROR, "Failed to update book..!").show();
+                    IssueBookDto issueBook = new IssueBookDto(
+                            txtIssueId.getText(),
+                            bookId,
+                            txtBookDetails.getText(),
+                            memberId,
+                            txtMemberDetails.getText(),
+                            issueDate,
+                            dueDate
+                    );
+
+                    String result = issueBookService.update(issueBook);
+                    if("Success".equals(result)) {
+                        loadIssueBook();
+                        clearFields();
+                        new Alert(Alert.AlertType.INFORMATION, "Book successfully updated..!").show();
+                    }else {
+                        new Alert(Alert.AlertType.ERROR, "Failed to update book..!").show();
+                    }
+
                 }
 
             }catch (Exception e) {
@@ -291,6 +299,27 @@ public class IssueBookFormController {
     private void setMemberId() {
         String memberId = "M-";
         txtMemberId.setText(memberId);
+    }
+
+    private boolean isValidField(){
+
+        if(txtIssueId.getText().trim().equalsIgnoreCase("IB-")){
+            new Alert(Alert.AlertType.WARNING, "Please enter a valid issue ID number..!").show();
+            return false;
+        }else if(txtBookId.getText().trim().equalsIgnoreCase("B-")){
+            new Alert(Alert.AlertType.WARNING, "Please enter a valid book ID number..!").show();
+            return false;
+        }else if(txtMemberId.getText().trim().equalsIgnoreCase("M-")){
+            new Alert(Alert.AlertType.WARNING, "Please enter a valid book member ID number..!").show();
+            return false;
+        } else if (txtIssueDate.getValue()==null || txtDueDate.getValue() == null) {
+            new Alert(Alert.AlertType.WARNING, "Please enter a valid date..!").show();
+            return false;
+        } else if (txtBookDetails.getText().isEmpty() || txtMemberDetails.getText().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please search book or member existing..!").show();
+            return false;
+        }
+        return true;
     }
 
 }
