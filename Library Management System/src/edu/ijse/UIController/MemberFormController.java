@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class MemberFormController {
     public AnchorPane memberContext;
@@ -76,29 +77,33 @@ public class MemberFormController {
 
 
     public void addOnAction(ActionEvent actionEvent) {
-
-        LocalDate dob = txtDob.getValue();
-
-        MemberDto member = new MemberDto(
-                txtId.getText(),
-                txtName.getText(),
-                txtAddress.getText(),
-                txtMobile.getText(),
-                txtEmail.getText(),
-                Integer.parseInt(txtAge.getText()),
-                dob,
-                txtGender.getText()
-        );
-
         try {
 
-            String result = memberService.save(member);
-            if ("Success".equals(result)) {
-                memberList.add(member);
-                memberTable.refresh();
-                new Alert(Alert.AlertType.INFORMATION, "Member Added Successfully").show();
-                clearFields();
-                setMemberId();
+            if (isValidField()) {
+
+                LocalDate dob = txtDob.getValue();
+
+                MemberDto member = new MemberDto(
+                        txtId.getText(),
+                        txtName.getText(),
+                        txtAddress.getText(),
+                        txtMobile.getText(),
+                        txtEmail.getText(),
+                        Integer.parseInt(txtAge.getText()),
+                        dob,
+                        txtGender.getText()
+                );
+
+
+                String result = memberService.save(member);
+                if ("Success".equals(result)) {
+                    memberList.add(member);
+                    memberTable.refresh();
+                    new Alert(Alert.AlertType.INFORMATION, "Member Added Successfully").show();
+                    clearFields();
+                    setMemberId();
+                }
+
             }
 
         } catch (Exception e) {
@@ -109,27 +114,31 @@ public class MemberFormController {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
-        LocalDate dob = txtDob.getValue();
-
-        MemberDto member = new MemberDto(
-                txtId.getText(),
-                txtName.getText(),
-                txtAddress.getText(),
-                txtMobile.getText(),
-                txtEmail.getText(),
-                Integer.parseInt(txtAge.getText()),
-                dob,
-                txtGender.getText()
-        );
 
         try {
 
-            String result = memberService.update(member);
-            if ("Success".equals(result)) {
-                loadMember();
-                new Alert(Alert.AlertType.INFORMATION, "Member Updated Successfully").show();
-                clearFields();
-                setMemberId();
+            if (isValidField()) {
+                LocalDate dob = txtDob.getValue();
+
+                MemberDto member = new MemberDto(
+                        txtId.getText(),
+                        txtName.getText(),
+                        txtAddress.getText(),
+                        txtMobile.getText(),
+                        txtEmail.getText(),
+                        Integer.parseInt(txtAge.getText()),
+                        dob,
+                        txtGender.getText()
+                );
+
+
+                String result = memberService.update(member);
+                if ("Success".equals(result)) {
+                    loadMember();
+                    new Alert(Alert.AlertType.INFORMATION, "Member Updated Successfully").show();
+                    clearFields();
+                    setMemberId();
+                }
             }
 
         } catch (Exception e) {
@@ -236,5 +245,37 @@ public class MemberFormController {
     private void setMemberId() {
         String memberId = "M-";
         txtId.setText(memberId);
+    }
+
+    private static boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern emailPattern = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
+        return emailPattern.matcher(email).matches();
+    }
+
+    private boolean isValidField() {
+        boolean checkEmail = isValidEmail(txtEmail.getText());
+
+        if (txtId.getText().equalsIgnoreCase("M-")) {
+            new Alert(Alert.AlertType.WARNING, "Please enter a valid ID number..!").show();
+            return false;
+        } else if (txtName.getText().trim().isEmpty() || txtAddress.getText().trim().isEmpty() || txtMobile.getText().trim().isEmpty()
+                || txtAge.getText().trim().isEmpty() || txtDob.getValue() == null || cmbGender == null) {
+            new Alert(Alert.AlertType.WARNING, "Please complete all details..!").show();
+            return false;
+        } else if (!checkEmail) {
+            new Alert(Alert.AlertType.WARNING, "Please enter a valid email address.").show();
+            return false;
+        } else if (!txtName.getText().matches("^[^0-9]*$")) {
+            new Alert(Alert.AlertType.WARNING, "Member name can't be a number..!").show();
+            return false;
+        } else if (!txtMobile.getText().matches("^0[7][01245678][0-9]{7}$")) {
+            new Alert(Alert.AlertType.WARNING, "Please enter a valid mobile number.").show();
+            return false;
+        } else if (!txtAge.getText().matches("^[0-9]+$")) {
+            new Alert(Alert.AlertType.WARNING, "Please enter valid age..!..!").show();
+            return false;
+        }
+        return true;
     }
 }
