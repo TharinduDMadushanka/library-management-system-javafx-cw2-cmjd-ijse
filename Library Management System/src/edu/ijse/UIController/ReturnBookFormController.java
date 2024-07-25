@@ -49,6 +49,12 @@ public class ReturnBookFormController {
 
     private static int lastReturnId = 0;
 
+    public void initialize(){
+
+        generateIssueBookId();
+
+    }
+
     public void searchIssueBookOnAction(ActionEvent actionEvent) throws Exception {
 
         try {
@@ -57,7 +63,7 @@ public class ReturnBookFormController {
             IssueBookDto issueBook = issueBookService.get(issueBookId);
 
             if (issueBook == null) {
-                new Alert(Alert.AlertType.ERROR,"Please Enter correct Issue Book ID..!").show();
+                new Alert(Alert.AlertType.WARNING,"Please Enter correct Issue Book ID..!").show();
                 return;
             }
 
@@ -84,7 +90,7 @@ public class ReturnBookFormController {
             MemberDto member = memberService.get(memberId);
 
             if (member == null) {
-                new Alert(Alert.AlertType.ERROR,"Member not found..!").show();
+                new Alert(Alert.AlertType.WARNING,"Member not found..!").show();
                 return;
             }
 
@@ -103,6 +109,16 @@ public class ReturnBookFormController {
     }
 
     public void returnBookOnAction(ActionEvent actionEvent) {
+
+        if (txtIssueId.getText().trim().equalsIgnoreCase("IB-")){
+            new Alert(Alert.AlertType.WARNING,"Please enter correct Issue ID number..!").show();
+            return;
+        } else if (txtReturnId.getText().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING,"Please enter correct return ID number..!").show();
+            return;
+        } else if (txtReturnDate.getValue() == null) {
+            new Alert(Alert.AlertType.WARNING,"Please enter return date..!").show();
+        }
 
         try {
             LocalDate issueDate = LocalDate.parse(txtIssueDate.getText());
@@ -139,15 +155,15 @@ public class ReturnBookFormController {
 
             String result = returnBookService.returnBook(returnBook);
             if (result != null) {
-                new Alert(Alert.AlertType.INFORMATION, "Book returned successfully..!").show();
+                new Alert(Alert.AlertType.INFORMATION, "Book returned successfully..!").showAndWait();
                 clearFields();
             }else {
-                new Alert(Alert.AlertType.ERROR,"Failed to return book..!").show();
+                new Alert(Alert.AlertType.WARNING,"Failed to return book..!").show();
             }
 
         }catch (Exception e){
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Error in returning book..!").show();
+            new Alert(Alert.AlertType.WARNING, "Error in returning book..!").show();
         }
     }
     private void clearFields() {
@@ -160,10 +176,17 @@ public class ReturnBookFormController {
         txtDueDate.clear();
         txtReturnDate.setValue(null);
         txtFine.clear();
+        generateIssueBookId();
     }
     private String generateNewReturnId() {
         // Logic to generate a new returnId
         // This could be based on a sequence, UUID, or any other logic you prefer
         return UUID.randomUUID().toString(); // Example using UUID
     }
+
+    private void generateIssueBookId() {
+        String issueBookId = "IB-";
+        txtIssueId.setText(issueBookId);
+    }
+
 }
