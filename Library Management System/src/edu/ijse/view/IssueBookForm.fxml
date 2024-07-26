@@ -50,6 +50,38 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Button layoutX="603.0" layoutY="167.0" mnemonicParsing="false" onAction="#issueBookOnAction" prefHeight="38.0" prefWidth="223.0" styleClass="login-btn" stylesheets="@style/login.css" text="Issue Book">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="752.0" layoutY="12.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Update">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="752.0" layoutY="63.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Delete">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="752.0" layoutY="117.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Clear">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
             <Label layoutX="21.0" layoutY="20.0" opacity="0.71" prefHeight="20.0" prefWidth="166.0" text="Manage Issue Books">
@@ -81,38 +113,6 @@
                </font>
             </Label>
             <DatePicker fx:id="txtDueDate" layoutX="25.0" layoutY="190.0" prefHeight="26.0" prefWidth="143.0" />
-            <Button layoutX="761.0" layoutY="26.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Add">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button layoutX="761.0" layoutY="78.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Update">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button layoutX="761.0" layoutY="127.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Delete">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button layoutX="761.0" layoutY="177.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="38.0" prefWidth="74.0" styleClass="login-btn" stylesheets="@style/login.css" text="Clear">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <AnchorPane layoutX="12.0" layoutY="245.0" prefHeight="366.0" prefWidth="838.0" stylesheets="@style/mainform.css">
                <styleClass>
                   <String fx:value="white-bg" />
@@ -130,6 +130,7 @@
                         <TableColumn fx:id="colDueDate" prefWidth="100.80010986328125" text="Due Date" />
                     </columns>
                   </TableView>
+                  <TextField fx:id="txtStatus" editable="false" layoutX="680.0" layoutY="14.0" prefHeight="26.0" prefWidth="92.0" />
                </children>
             </AnchorPane>
             <TextField fx:id="txtSearch" layoutX="24.0" layoutY="255.0" prefHeight="20.0" prefWidth="318.0" promptText="Eneter issue ID to Search...">

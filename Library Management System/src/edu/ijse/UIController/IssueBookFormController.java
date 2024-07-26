@@ -3,9 +3,11 @@ package edu.ijse.UIController;
 import edu.ijse.dto.BookDto;
 import edu.ijse.dto.IssueBookDto;
 import edu.ijse.dto.MemberDto;
+import edu.ijse.dto.ReturnBookDto;
 import edu.ijse.service.custom.impl.BookServiceImpl;
 import edu.ijse.service.custom.impl.IssueBookServiceImpl;
 import edu.ijse.service.custom.impl.MemberServiceImpl;
+import edu.ijse.service.custom.impl.ReturnBookServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,13 +38,15 @@ public class IssueBookFormController {
     public TableColumn<IssueBookDto, String> colMemberDetail;
     public TableColumn<IssueBookDto, String> colIssueDate;
     public TableColumn<IssueBookDto, String> colDueDate;
+    public TextField txtStatus;
 
     private IssueBookServiceImpl issueBookService = new IssueBookServiceImpl();
     private BookServiceImpl bookService = new BookServiceImpl();
     private MemberServiceImpl memberService = new MemberServiceImpl();
     private ObservableList<IssueBookDto> issueBookList = FXCollections.observableArrayList();
+    private ReturnBookServiceImpl returnBookService = new ReturnBookServiceImpl();
 
-    public void initialize() {
+    public void initialize() throws Exception {
         colIssueId.setCellValueFactory(new PropertyValueFactory<>("issueId"));
         colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         colBookDetail.setCellValueFactory(new PropertyValueFactory<>("bookDetails"));
@@ -55,6 +59,7 @@ public class IssueBookFormController {
         generateIssueBookId();
         setNewBookId();
         setMemberId();
+        //statusOnAction();
 
         issueBookTable.setItems(issueBookList);
         issueBookTable.setOnMouseClicked(this::selectValue);
@@ -96,7 +101,7 @@ public class IssueBookFormController {
 
     }
 
-    public void addOnAction(ActionEvent actionEvent) {
+    public void issueBookOnAction(ActionEvent actionEvent) {
 
         if(!txtMemberDetails.getText().equalsIgnoreCase("Member not found..!")) {
             try {
@@ -131,7 +136,7 @@ public class IssueBookFormController {
                         issueBookList.add(issueBook);
                         issueBookTable.setItems(issueBookList);
                         clearFields();
-                        new Alert(Alert.AlertType.INFORMATION, "Book successfully added").show();
+                        new Alert(Alert.AlertType.INFORMATION, "Book issued successfully..!").show();
                     }else {
                         new Alert(Alert.AlertType.ERROR, "Failed to add book..!").show();
                     }
@@ -283,6 +288,7 @@ public class IssueBookFormController {
             txtMemberDetails.setText(selectedIssueBook.getMemberDetails());
             txtIssueDate.setValue(selectedIssueBook.getIssueDate());
             txtDueDate.setValue(selectedIssueBook.getDueDate());
+
         }
     }
 
@@ -322,4 +328,20 @@ public class IssueBookFormController {
         return true;
     }
 
+//    public void statusOnAction() throws Exception {
+//
+//        String issueBookId = txtIssueId.getText();
+//
+//        IssueBookDto issueBook = issueBookService.get(issueBookId);
+//        ReturnBookDto returnBook = returnBookService.get(issueBookId);
+//
+//        if (issueBook != null && returnBook != null) {
+//
+//            if (issueBook.getIssueId().equals(returnBook.getIssueId())) {
+//                txtStatus.setText("returned.!");
+//            }else {
+//                txtStatus.setText("not returned.!");
+//            }
+//        }
+//    }
 }

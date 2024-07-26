@@ -86,4 +86,24 @@ public class ReturnBookServiceImpl implements ReturnBookService {
         }
         return null;
     }
+
+    @Override
+    public ReturnBookDto get(String id) throws Exception {
+        ReturnBookEntity entity = returnBookDao.get(id);
+        if (entity != null) {
+            return new ReturnBookDto(
+                    entity.getReturnId(),
+                    entity.getIssueId(),
+                    entity.getBookId(),
+                    entity.getBookDetails(),
+                    entity.getMemberId(),
+                    entity.getMemberDetails(),
+                    entity.getIssueDate(),
+                    entity.getDueDate(),
+                    entity.getReturnDate(),
+                    entity.getFine()
+            );
+        }
+        return null;
+    }
 }

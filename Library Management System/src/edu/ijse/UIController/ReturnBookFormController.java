@@ -166,6 +166,10 @@ public class ReturnBookFormController {
                     bookService.update(book);
                 }
 
+                if (fine>0){
+                    new Alert(Alert.AlertType.WARNING,"You extended the return date.You have pay "+fine+" $").showAndWait();
+                }
+
                 new Alert(Alert.AlertType.INFORMATION, "Book returned successfully..!").showAndWait();
                 clearFields();
             }else {
