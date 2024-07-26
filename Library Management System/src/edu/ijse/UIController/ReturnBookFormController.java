@@ -1,9 +1,11 @@
 package edu.ijse.UIController;
 
 import edu.ijse.db.DBConnection;
+import edu.ijse.dto.BookDto;
 import edu.ijse.dto.IssueBookDto;
 import edu.ijse.dto.MemberDto;
 import edu.ijse.dto.ReturnBookDto;
+import edu.ijse.service.custom.impl.BookServiceImpl;
 import edu.ijse.service.custom.impl.IssueBookServiceImpl;
 import edu.ijse.service.custom.impl.MemberServiceImpl;
 import edu.ijse.service.custom.impl.ReturnBookServiceImpl;
@@ -46,6 +48,7 @@ public class ReturnBookFormController {
     private IssueBookServiceImpl issueBookService = new IssueBookServiceImpl();
     private MemberServiceImpl memberService = new MemberServiceImpl();
     private ReturnBookServiceImpl returnBookService = new ReturnBookServiceImpl();
+    private BookServiceImpl bookService = new BookServiceImpl();
 
     private static int lastReturnId = 0;
 
@@ -124,6 +127,7 @@ public class ReturnBookFormController {
             LocalDate issueDate = LocalDate.parse(txtIssueDate.getText());
             LocalDate dueDate = LocalDate.parse(txtDueDate.getText());
             LocalDate returnDate = txtReturnDate.getValue();
+            String bookId = txtBookId.getText();
 
             long daysBetween = ChronoUnit.DAYS.between(dueDate, returnDate);
             double fine = 0;
@@ -155,6 +159,13 @@ public class ReturnBookFormController {
 
             String result = returnBookService.returnBook(returnBook);
             if (result != null) {
+
+                BookDto book = bookService.get(bookId);
+                if(book != null && "no".equalsIgnoreCase(book.getAvailable())) {
+                    book.setAvailable("yes");
+                    bookService.update(book);
+                }
+
                 new Alert(Alert.AlertType.INFORMATION, "Book returned successfully..!").showAndWait();
                 clearFields();
             }else {
