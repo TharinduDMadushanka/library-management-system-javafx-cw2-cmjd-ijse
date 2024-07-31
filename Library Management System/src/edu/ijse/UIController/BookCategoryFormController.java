@@ -39,10 +39,10 @@ public class BookCategoryFormController {
     public void addOnAction(ActionEvent actionEvent) {
 
         if (txtName.getText().trim().isEmpty() || txtId.getText().trim().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
+            new Alert(Alert.AlertType.WARNING, "Please complete all details..!").show();
             return;
         }else if (txtId.getText().equalsIgnoreCase("BC-")){
-            new Alert(Alert.AlertType.ERROR, "Please Enter Category ID..!").show();
+            new Alert(Alert.AlertType.WARNING, "Please Enter Category ID..!").show();
             return;
         }
 
@@ -70,10 +70,10 @@ public class BookCategoryFormController {
     public void updateOnAction(ActionEvent actionEvent) {
 
         if (txtName.getText().trim().isEmpty() || txtId.getText().trim().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
+            new Alert(Alert.AlertType.WARNING, "Please complete all details..!").show();
             return;
         }else if (txtId.getText().equalsIgnoreCase("BC-")){
-            new Alert(Alert.AlertType.ERROR, "Please Enter Category ID..!").show();
+            new Alert(Alert.AlertType.WARNING, "Please Enter Category ID..!").show();
             return;
         }
 

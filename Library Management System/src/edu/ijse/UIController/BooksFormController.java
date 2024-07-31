@@ -85,13 +85,13 @@ public class BooksFormController {
             CategoryDto category = categoryService.get(categoryId);
 
             if (txtCategoryId.getText().equalsIgnoreCase("BC-") || txtBookId.getText().equalsIgnoreCase("B-")) {
-                new Alert(Alert.AlertType.ERROR, "Please Enter Category ID or Book ID..!").show();
+                new Alert(Alert.AlertType.WARNING, "Please Enter Category ID or Book ID..!").show();
                 return;
             } else if (txtTitle.getText().trim().isEmpty() || txtAuthor.getText().trim().isEmpty() || txtYear.getValue() == null) {
-                new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
+                new Alert(Alert.AlertType.WARNING, "Please complete all details..!").show();
                 return;
             } else if (!txtAuthor.getText().matches("^[^0-9]*$")) {
-                new Alert(Alert.AlertType.ERROR, "Author name can't be a number..!", ButtonType.OK).show();
+                new Alert(Alert.AlertType.WARNING, "Author name can't be a number..!", ButtonType.OK).show();
                 return;
             }
 
@@ -139,13 +139,13 @@ public class BooksFormController {
             CategoryDto category = categoryService.get(categoryId);
 
             if (txtCategoryId.getText().equalsIgnoreCase("BC-") || txtBookId.getText().equalsIgnoreCase("B-")) {
-                new Alert(Alert.AlertType.ERROR, "Please Enter Category ID or Book ID..!").show();
+                new Alert(Alert.AlertType.WARNING, "Please Enter Category ID or Book ID..!").show();
                 return;
             } else if (txtTitle.getText().trim().isEmpty() || txtAuthor.getText().trim().isEmpty() || txtYear.getValue() == null) {
-                new Alert(Alert.AlertType.ERROR, "Please complete all details..!").show();
+                new Alert(Alert.AlertType.WARNING, "Please complete all details..!").show();
                 return;
             } else if (!txtAuthor.getText().matches("^[^0-9]*$")) {
-                new Alert(Alert.AlertType.ERROR, "Author name can't be a number..!", ButtonType.OK).show();
+                new Alert(Alert.AlertType.WARNING, "Author name can't be a number..!", ButtonType.OK).show();
                 return;
             }
 
@@ -176,7 +176,7 @@ public class BooksFormController {
                 setNewBookId();
                 new Alert(Alert.AlertType.INFORMATION, "Book Updated Successfully").show();
             } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to update book").show();
+                new Alert(Alert.AlertType.WARNING, "Failed to update book").show();
             }
 
         } catch (Exception e) {
@@ -204,7 +204,7 @@ public class BooksFormController {
                 }
 
             }else {
-                new Alert(Alert.AlertType.ERROR, "Failed to delete book").show();
+                new Alert(Alert.AlertType.WARNING, "Failed to delete book").show();
             }
 
         }catch (Exception e){
@@ -232,7 +232,7 @@ public class BooksFormController {
                     loadBook();
                 }
             } else {
-                new Alert(Alert.AlertType.ERROR, "Please enter a Book ID to search").show();
+                new Alert(Alert.AlertType.WARNING, "Please enter a Book ID to search").show();
                 loadBook();
             }
         } catch (Exception e) {

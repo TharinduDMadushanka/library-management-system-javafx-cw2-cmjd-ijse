@@ -24,7 +24,7 @@ public class LoginFormController {
         String password = txtPassword.getText();
 
         if (userName == null || userName.isEmpty() || password == null || password.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Username or password cannot be empty").showAndWait();
+            new Alert(Alert.AlertType.WARNING, "Username or password cannot be empty").showAndWait();
             return;
         }
 

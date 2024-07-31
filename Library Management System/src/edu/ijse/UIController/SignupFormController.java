@@ -30,16 +30,16 @@ public class SignupFormController {
         boolean checkEmail = isValidEmail(txtEmail.getText());
 
         if (!name.matches("^[^0-9]*$")){ // String validation
-            new Alert(Alert.AlertType.ERROR, "Name can't be a number..!", ButtonType.OK).show();
+            new Alert(Alert.AlertType.WARNING, "Name can't be a number..!", ButtonType.OK).show();
             return;
         }else if (!checkEmail){
-            new Alert(Alert.AlertType.ERROR,"Please enter a valid email address.",ButtonType.OK).show();
+            new Alert(Alert.AlertType.WARNING,"Please enter a valid email address.",ButtonType.OK).show();
             return;
         }
 
 
         if(name.isEmpty() || password.isEmpty() || email.isEmpty() || username.isEmpty()){
-           new Alert(Alert.AlertType.ERROR, "Please fill all the fields", ButtonType.OK).show();
+           new Alert(Alert.AlertType.WARNING, "Please fill all the fields", ButtonType.OK).show();
         }else {
             DBConnection.userTable.add(
                     new Admin(name,password,email,username)

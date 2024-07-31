@@ -145,7 +145,7 @@ public class IssueBookFormController {
 
             }catch (Exception e) {
                 e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Error in issuing book").show();
+                new Alert(Alert.AlertType.WARNING, "Error in issuing book").show();
             }
         }else {
             new Alert(Alert.AlertType.ERROR, "Please enter valid details").show();
@@ -182,7 +182,7 @@ public class IssueBookFormController {
                         clearFields();
                         new Alert(Alert.AlertType.INFORMATION, "Book successfully updated..!").show();
                     }else {
-                        new Alert(Alert.AlertType.ERROR, "Failed to update book..!").show();
+                        new Alert(Alert.AlertType.WARNING, "Failed to update book..!").show();
                     }
 
                 }
@@ -192,7 +192,7 @@ public class IssueBookFormController {
                 new Alert(Alert.AlertType.ERROR, "Error in update issue book..!").show();
             }
         }else {
-            new Alert(Alert.AlertType.ERROR, "Please enter valid details").show();
+            new Alert(Alert.AlertType.WARNING, "Please enter valid details").show();
         }
 
     }
@@ -239,11 +239,11 @@ public class IssueBookFormController {
                     issueBookList.add(issueBook);
                     issueBookTable.setItems(issueBookList);
                 }else {
-                    new Alert(Alert.AlertType.ERROR, "No issue book found with ID "+issueId).show();
+                    new Alert(Alert.AlertType.WARNING, "No issue book found with ID "+issueId).show();
                     loadIssueBook();
                 }
             }else {
-                new Alert(Alert.AlertType.ERROR, "Please enter Issue book ID to search").show();
+                new Alert(Alert.AlertType.WARNING, "Please enter Issue book ID to search").show();
                 loadIssueBook();
             }
 
