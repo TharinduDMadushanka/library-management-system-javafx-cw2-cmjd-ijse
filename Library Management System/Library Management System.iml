@@ -18,5 +18,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="fontawesomefx-8.21" level="project" />
+    <orderEntry type="library" name="mysql-connector-j-8.4.01" level="project" />
   </component>
 </module>

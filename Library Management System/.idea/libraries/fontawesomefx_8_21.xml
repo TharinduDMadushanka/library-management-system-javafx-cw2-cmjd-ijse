@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="fontawesomefx-8.21">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/edu/ijse/lib/fontawesomefx-8.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
