@@ -35,6 +35,8 @@ The application follows a layered architecture consisting of:
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-
+![login](https://github.com/user-attachments/assets/42899953-5b52-4d2c-b3a2-3489a2194512)
+![signup](https://github.com/user-attachments/assets/81f6253a-b9a4-4753-9d13-5c4dc4a3ccf9)
+![img1](https://github.com/user-attachments/assets/7191569b-9cc6-4497-869f-575d516ad11e)
+![img3](https://github.com/user-attachments/assets/43c72835-15fb-4bd0-89aa-e825289c8ab1)
+![img2](https://github.com/user-attachments/assets/9bec6e04-b319-4fc1-af11-374d4eecf4f9)
