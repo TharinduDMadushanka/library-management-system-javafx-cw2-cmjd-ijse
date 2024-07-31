@@ -31,6 +31,25 @@ The application follows a layered architecture consisting of:
 - JDBC
 - Git
 
+## Usage
+
+1. **Add Books and Members:**
+   - Navigate to the respective sections to add books and members.
+   - Fill in all required fields. The system will validate the input and display warning messages for any incorrect or missing details.
+
+2. **Issue Books:**
+   - Go to the 'Issue Book' section.
+   - Enter the book ID and member ID. The system will validate the IDs and show warnings if they are invalid or if the fields are left empty.
+   - Upon successful validation, the book will be issued to the member.
+
+3. **Return Books:**
+   - Access the 'Return Book' section.
+   - Enter the issued book ID. The system will check the validity of the ID and display any applicable warnings.
+   - If the return is valid and within the due date, the book will be returned. If the due date has passed, a fine will be calculated and displayed.
+
+4. **View Statistics:**
+   - Navigate to the 'Statistics' section to view details on borrowed and returned books.
+   - The system will fetch and display relevant statistics, including book IDs, member IDs, book names, category IDs, issue dates, return dates, and fines.
 
 
 ## Screenshots
@@ -38,5 +57,5 @@ The application follows a layered architecture consisting of:
 ![login](https://github.com/user-attachments/assets/42899953-5b52-4d2c-b3a2-3489a2194512)
 ![signup](https://github.com/user-attachments/assets/81f6253a-b9a4-4753-9d13-5c4dc4a3ccf9)
 ![img1](https://github.com/user-attachments/assets/7191569b-9cc6-4497-869f-575d516ad11e)
-![img3](https://github.com/user-attachments/assets/43c72835-15fb-4bd0-89aa-e825289c8ab1)
 ![img2](https://github.com/user-attachments/assets/9bec6e04-b319-4fc1-af11-374d4eecf4f9)
+![img3](https://github.com/user-attachments/assets/43c72835-15fb-4bd0-89aa-e825289c8ab1) 
