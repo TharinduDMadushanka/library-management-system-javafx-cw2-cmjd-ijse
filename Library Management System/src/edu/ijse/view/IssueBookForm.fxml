@@ -130,7 +130,6 @@
                         <TableColumn fx:id="colDueDate" prefWidth="100.80010986328125" text="Due Date" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="txtStatus" editable="false" layoutX="680.0" layoutY="14.0" prefHeight="26.0" prefWidth="92.0" />
                </children>
             </AnchorPane>
             <TextField fx:id="txtSearch" layoutX="24.0" layoutY="255.0" prefHeight="20.0" prefWidth="318.0" promptText="Eneter issue ID to Search...">
